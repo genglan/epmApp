@@ -24,50 +24,44 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
-
-    .state('app', {
+  //app介绍页
+  .state('introduce', {
+    url: '/introduce',
+    templateUrl: 'templates/introduce.html',
+    controller: 'IntroduceCtrl'
+  })
+  //登陆页
+  .state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'LoginCtrl'
+  })
+  //应用首页 --侧滑菜单
+  .state('app', {
     url: '/app',
-    abstract: true,
     templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
+    controller: 'MineCtrl'
   })
-
-  .state('app.search', {
-    url: '/search',
+  //应用首页 --侧滑菜单 我的信息
+  .state('app.mine', {
+    url: "/mine",
     views: {
-      'menuContent': {
-        templateUrl: 'templates/search.html'
+      'menuContent' :{
+        templateUrl: "templates/mine.html",
+        controller:'MineCtrl'
       }
     }
   })
-
-  .state('app.browse', {
-      url: '/browse',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/browse.html'
-        }
-      }
-    })
-    .state('app.playlists', {
-      url: '/playlists',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
-        }
-      }
-    })
-
-  .state('app.single', {
-    url: '/playlists/:playlistId',
+  //应用首页 --主屏 tab
+  .state('app.tab', {
+    url: "/tab",
     views: {
-      'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
+      'menuContent' :{
+        templateUrl: "templates/tabs.html",
+        controller:'TableCtrl'
       }
     }
-  });
+  })
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/introduce');
 });
