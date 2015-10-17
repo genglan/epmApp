@@ -19,7 +19,28 @@ angular.module('starter.controllers', [])
       $state.go("login");
     }
 })
-//应用首页 table
+//应用首页 tab
 .controller('TableCtrl', function($scope,$state) {
     
 })
+//应用首页 tab 今日头条
+.controller('HeadLinesCtrl', function($scope,$state) {
+    
+})
+//应用首页 tab Say Hi ~
+.controller('SayCtrl', function($scope,$state) {
+    
+})
+//应用首页 tab Show me ~
+.controller('ShowCtrl', function($scope,$state) {
+    
+})
+//应用首页 tab 每日话题
+.controller('SubjectCtrl', function($scope,$state) {
+    
+})
+//应用首页 tab Hp活动
+.controller('ActivityCtrl', function($scope,$state) {
+    
+})
+

@@ -62,6 +62,56 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
+  //今日头条
+  .state('app.tab.headlines', {
+      url: '/headlines',
+      views: {
+        'tab-headlines': {
+          templateUrl: 'templates/headlines.html',
+          controller: 'HeadLinesCtrl'
+        }
+      }
+  })
+  //Say Hi ~
+  .state('app.tab.say', {
+      url: '/say',
+      views: {
+        'tab-say': {
+          templateUrl: 'templates/say-hi.html',
+          controller: 'SayCtrl'
+        }
+      }
+  })
+  //Show me ~
+  .state('app.tab.show', {
+      url: '/show',
+      views: {
+        'tab-show': {
+          templateUrl: 'templates/show-me.html',
+          controller: 'ShowCtrl'
+        }
+      }
+  })
+  //每日话题
+  .state('app.tab.subject', {
+      url: '/subject',
+      views: {
+        'tab-subject': {
+          templateUrl: 'templates/subject.html',
+          controller: 'SubjectCtrl'
+        }
+      }
+  })
+  //Hp活动
+  .state('app.tab.activity', {
+      url: '/activity',
+      views: {
+        'tab-hp': {
+          templateUrl: 'templates/activity-hp.html',
+          controller: 'ActivityCtrl'
+        }
+      }
+  })
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/introduce');
 });
