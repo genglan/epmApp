@@ -43,14 +43,10 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     controller: 'MineCtrl'
   })
   //应用首页 --侧滑菜单 我的信息
-  .state('app.mine', {
+  .state('mine', {
     url: "/mine",
-    views: {
-      'menuContent' :{
-        templateUrl: "templates/mine.html",
-        controller:'MineCtrl'
-      }
-    }
+    templateUrl: "templates/mine.html",
+    controller:'MineCtrl'
   })
   //应用首页 --主屏 tab
   .state('app.tab', {

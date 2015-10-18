@@ -9,7 +9,7 @@ angular.module('starter.controllers', [])
 //登陆
 .controller('LoginCtrl', function($scope,$state) {
     $scope.loginFun = function (){
-       $state.go("app.tab"); 
+       $state.go("app.tab.headlines"); 
     }
 })
 //我的信息
@@ -17,6 +17,10 @@ angular.module('starter.controllers', [])
     $scope.loginOut = function (){
       alert("退出登录");
       $state.go("login");
+    }
+    //我的信息页面返回
+    $scope.comebackFun = function (){
+        $state.go("app.tab.headlines"); 
     }
 })
 //应用首页 tab

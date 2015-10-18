@@ -1,1 +1,74 @@
 /* Empty. Add your own CSS if you like */
+.bar.bar-assertive{
+	background-color:#0096d6;
+	border-color:#0096d6;
+}
+.bar.bar-stable{
+	background-color:#0096d6;
+}
+.bar.bar-stable .title{
+	color:#fff;
+}
+.tabs-positive > .tabs, .tabs.tabs-positive{
+	background-color:#0096d6;
+	border-color:#0096d6;
+}
+.bar .title.title-left{
+	text-align:center;
+}
+a{
+	text-decoration:none;
+}
+/*login css #0096d6*/
+.login {
+	background: url(../img/login-bg.png) repeat-x;
+	background-size: 100% 100%;	
+}
+.login-logo {
+	width: 100px;
+	height: 100px;
+	background: url(../img/logo.png) no-repeat;
+	background-size: 100px 100px;
+	margin: 100px auto;
+	margin-bottom: 0;
+}
+.login-user,.login-but {
+	padding-top:20px;
+	width: 100%;
+}
+.login-user input:focus{
+	background-color: #e5f8fe;
+    border: 1px solid #12c1f6;
+    color: #60D5F6;
+}
+.login-user input[type='text'],input[type='password'],.login-but input[type='button']{
+	width: 90%;
+	text-transform: none;
+	font-size: 18px;
+	color: #ccc;
+	border-radius: 8px;
+	margin-left: 5%;
+	padding-top: 10px;
+	height:48px;
+}
+.login-user input[type='text']:first-child {
+	margin-bottom: 25px;
+	background: url(../img/user_name.png) no-repeat left 10px center;
+	background-size: 15px 24px;
+	background-color: #fff;
+	padding-left: 35px;
+}
+.login-user input[type='password']:last-child{
+	background: url(../img/password.png) no-repeat left 10px center;
+	background-size: 15px 24px;
+	background-color: #fff;
+	padding-left: 35px;
+}
+.login-but input[type='button']{
+	background: #fff;
+}
+.zhuce {
+	position: relative;
+	left: 50%;
+	color:#ccc;
+}

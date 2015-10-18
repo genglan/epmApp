@@ -1,3 +1,15 @@
-<ion-pane>
-  <input type="button" ng-click="loginFun();" value="登陆"/>
-</ion-pane>
+<ion-view>
+	<ion-pane class="login">
+		<div class="login-logo"></div>
+		<div class="login-user">
+			<input type="text" type="text" placeholder="用户名" autocapitalize="off">
+			<input type="password" placeholder="密码" autocapitalize="off">
+		</div>
+		<div class="login-but">
+			<input type="button" class="" ng-click="loginFun();"  value="登陆"/>
+		</div>
+  	</ion-pane>
+  	<ion-footer-bar class="bar-assertive">
+  		<a href="#" class="zhuce">注册</a>
+  	</ion-footer-bar>
+</ion-view>
