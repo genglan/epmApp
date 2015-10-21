@@ -98,6 +98,17 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
   })
+  .state('subjectInfo', {
+    url: "/subjectInfo/:ID",
+    templateUrl: "templates/subject-info.html",
+    controller:'SubjectCtrl'
+  })
+  //say hi type：1 ，show me type：2 
+  .state('info', {
+    url: "/info/:type/:ID",
+    templateUrl: "templates/info.html",
+    controller:'InfoCtrl'
+  })
   //Hp活动
   .state('app.tab.activity', {
       url: '/activity',
@@ -107,6 +118,12 @@ angular.module('starter', ['ionic', 'starter.controllers'])
           controller: 'ActivityCtrl'
         }
       }
+  })
+   //活动详情
+  .state('activityInfo', {
+    url: "/activityInfo/:ID",
+    templateUrl: "templates/activity-info.html",
+    controller:'ActivityCtrl'
   })
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/introduce');

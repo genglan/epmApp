@@ -43,6 +43,12 @@ angular.module('starter.controllers', [])
 .controller('SubjectCtrl', function($scope,$state) {
     
 })
+//say hi type：1 ，show me type：2 ，每日话题详情页 type：3
+.controller('InfoCtrl', function($scope,$state,$stateParams) {
+    var type = $stateParams.type;
+    var id = $stateParams.ID;
+    $scope.title = type == "1" ?'Say Hi':type == "2" ?'Show me':type == "3" ?'每日话题':'';
+})
 //应用首页 tab Hp活动
 .controller('ActivityCtrl', function($scope,$state) {
     
