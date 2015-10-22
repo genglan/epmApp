@@ -32,6 +32,12 @@
 a{
 	text-decoration:none;
 }
+..popup-head {
+	background-color: #0096d6;
+}
+.icon.white-word {
+	color:#fff;
+}
 /*login css #0096d6*/
 .login {
 	background: url(../img/login-bg.png) repeat-x;
@@ -171,5 +177,25 @@ a{
 	left: 50%;
 	color:#fff;
 	background-color: #0096d6;
+	border:none;
+}
+ion-modal-view .item{
+	border:none;
+}
+ion-modal-view .input-label ,.publish-say .input-label{
+	width:50px;
+}
+ion-modal-view .list{
+	padding-top:20px;
+}
+ion-modal-view .item-input input, ion-modal-view .item-input textarea{
+	border:1px solid #ccc;
+	margin-right: 25px;
+}
+.publish-say input, .publish-say textarea{
+	border:1px solid #ccc;
+	margin-right: 25px;
+}
+.publish-say label {
 	border:none;
 }

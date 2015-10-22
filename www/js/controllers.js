@@ -7,16 +7,38 @@ angular.module('starter.controllers', [])
     }
 })
 //登陆
-.controller('LoginCtrl', function($scope,$state) {
+.controller('LoginCtrl', function($scope,$state,$ionicPopup) {
     $scope.loginFun = function (){
-       $state.go("app.tab.headlines"); 
+       //提示登陆成功后 有两个按钮 立即say hi ，下次吧 
+       var confirmPopup = $ionicPopup.confirm({
+            title: "提示信息",
+            content: "登陆成功！赶紧跟大家say hi 一下吧！",
+            okText:'立即say hi',
+            cancelText: '下一次吧'
+        }).then(function (res) {
+            if (res) {
+                $state.go("publishSay");//点击立即say hi 跳转到发布say hi页面
+            }else{
+                $state.go("app.tab.headlines");//如果点击下次直接跳到应用首页 
+            };
+            confirmPopup.close();
+        });   
     }
 })
 //我的信息
-.controller('MineCtrl', function($scope,$state) {
+.controller('MineCtrl', function($scope,$state,$ionicPopup) {
     $scope.loginOut = function (){
-      alert("退出登录");
-      $state.go("login");
+      var confirmPopup = $ionicPopup.confirm({
+            title: "提示信息",
+            content: "确定退出登陆？",
+            okText:'确定',
+            cancelText: '取消'
+        }).then(function (res) {
+            if (res) {
+                $state.go("login");
+            }
+            confirmPopup.close();
+        });   
     }
     //我的信息页面返回
     $scope.comebackFun = function (){
@@ -32,12 +54,33 @@ angular.module('starter.controllers', [])
     
 })
 //应用首页 tab Say Hi ~
-.controller('SayCtrl', function($scope,$state) {
-    
+.controller('SayCtrl', function($scope,$state,$ionicPopup) {
+    //点击确定 后
+    $scope.submitSay =function (){
+        $ionicPopup.alert({
+            title: '提示信息',
+            content: "say hi 成功！"
+        }).then(function (res) {
+            $state.go("app.tab.say"); 
+        });  
+    } 
 })
 //应用首页 tab Show me ~
-.controller('ShowCtrl', function($scope,$state) {
-    
+.controller('ShowCtrl', function($scope,$ionicModal) {
+    //发布show
+    $ionicModal.fromTemplateUrl('templates/publish.html', {
+        scope: $scope
+    }).then(function(modal) {
+        $scope.modal = modal;
+    });
+    //发布自己的show
+    $scope.showFun = function (){
+        $scope.modal.show();
+    }
+    //关闭发布框
+    $scope.closeFun = function (){
+         $scope.modal.hide();
+    }
 })
 //应用首页 tab 每日话题
 .controller('SubjectCtrl', function($scope,$state) {

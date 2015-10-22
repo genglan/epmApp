@@ -68,6 +68,12 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
   })
+  //say hi 
+  .state('publishSay', {
+    url: "/publishSay",
+    templateUrl: "templates/publish-say.html",
+    controller:'SayCtrl'
+  })
   //Say Hi ~
   .state('app.tab.say', {
       url: '/say',
