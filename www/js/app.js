@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -46,6 +46,18 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   .state('mine', {
     url: "/mine",
     templateUrl: "templates/mine.html",
+    controller:'MineCtrl'
+  })
+  //修改密码
+  .state('update', {
+    url: "/update",
+    templateUrl: "templates/update-pwd.html",
+    controller:'MineCtrl'
+  })
+  //编辑
+  .state('edit', {
+    url: "/edit",
+    templateUrl: "templates/edit-mine.html",
     controller:'MineCtrl'
   })
   //应用首页 --主屏 tab

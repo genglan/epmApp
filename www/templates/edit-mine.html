@@ -1,0 +1,50 @@
+<ion-view>
+  <ion-header-bar>
+  <div class="buttons">
+      <button class="button button-clear" onclick="javascript:history.back(-1);" >返回</button>
+   </div>
+    <h1 class="title" style="color:#fff;">{{user.NAME}}</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="updateUser();">保存</button>
+    </div>
+  </ion-header-bar>
+  <ion-content class="mine-info">
+    <div class="list">
+        <label class="item item-input">
+          <span class="input-label">姓名：</span>
+          <input type="text" ng-model="user.NAME">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">性别：</span>
+          <label class="item item-radio">
+              <input type="radio" name="sex" value="0"  ng-model="user.SEX">
+              <div class="item-content">男</div><i class="radio-icon ion-checkmark"></i>
+          </label>
+          <label class="item item-radio">
+              <input type="radio" name="sex" value="1" ng-model="user.SEX">
+              <div class="item-content">女</div><i class="radio-icon ion-checkmark"></i>
+          </label>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">学校：</span>
+          <input type="text" ng-model="user.SCHOOL">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">专业：</span>
+          <input type="text" ng-model="user.PROFESS">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">班级：</span>
+          <input type="text" ng-model="user.CLASSG">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">手机：</span>
+          <input type="text" ng-model="user.MOBILE">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">爱好：</span>
+          <textarea id="HOBBY"  rows="3">{{user.HOBBY}}</textarea>
+        </label>
+      </div>
+  </ion-content>
+</ion-view>

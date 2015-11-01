@@ -1,39 +1,39 @@
 <ion-view view-title="Show me">
   <ion-nav-buttons side="right">
-    <a class="button button-icon icon white-word" href="#" ng-click="showFun();">我要发布</a>
+    <a class="button button-icon icon white-word" href="#" ng-click="showFun();">我要发布{{show.id}}</a>
   </ion-nav-buttons>
   <ion-content class="show">
   		<ul class="content-ul">
-          <li class="content-title">今天show：</li>
-          <li class="comment-li">
+          <!-- <li class="content-title">今天show：</li> -->
+          <li class="comment-li" ng-repeat="show in showList">
             <div class="list">
-              <a class="item item-thumbnail-left" href="#/info/2/001">
+              <a class="item item-thumbnail-left" href="#/info/2/{{show.id}}">
                   <span>
                       <img src="./img/person.jpg">
-                      <h2 class="content-title">00000012</h2>
+                      <h2 class="content-title">{{show.realname}}</h2>
                   </span>
                   <span>
-                      <p>这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的</p>
+                      <p>{{show.content}}</p>
                   </span>
               </a>
             </div>   
           </li>
       </ul>
-      <ul class="content-ul">
+     <!--  <ul class="content-ul">
           <li class="content-title">往日show：</li>
-          <li class="comment-li">
+          <li class="comment-li" ng-repeat="show in showList">
             <div class="list">
-              <a class="item item-thumbnail-left" href="#/info/2/001">
+              <a class="item item-thumbnail-left" href="#/info/2/{{show.id}}">
                   <span>
                       <img src="./img/person.jpg">
-                      <h2 class="content-title">00000012</h2>
+                      <h2 class="content-title">{{show.realname}}</h2>
                   </span>
                   <span>
-                      <p>这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的</p>
+                     <p>{{show.content}}</p>
                   </span>
               </a>
             </div>   
           </li>
-      </ul>
+      </ul> -->
     </ion-content>
 </ion-view>

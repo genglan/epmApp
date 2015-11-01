@@ -1,39 +1,13 @@
 <ion-view view-title="每日话题">
  <ion-content>
   		<ul class="content-ul">
-          <li class="content-title">今日话题：</li>
+          <!-- <li class="content-title">今日话题：</li> -->
           <li class="comment-li">
-            <div class="list">
-              <a class="item item-thumbnail-left" href="#/subjectInfo/1">
+            <div class="list" ng-repeat="sub in subJectList">
+              <a class="item item-thumbnail-left" href="#/subjectInfo/{{sub.id}}">
                   <img src="./img/person.jpg">
-                  <h2 class="content-title">HP ID 00000012</h2>
-                  <p>这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的</p>
-              </a>
-            </div>
-            <div class="list">
-              <a class="item item-thumbnail-left"  href="#/subjectInfo/1">
-                  <img src="./img/person.jpg">
-                  <h2>HP ID 00000012</h2>
-                  <p>这个做的真的挺好的</p>
-              </a>
-            </div>
-          </li>
-      </ul>
-      <ul class="content-ul">
-          <li class="content-title">往日话题：</li>
-          <li class="comment-li">
-            <div class="list">
-              <a class="item item-thumbnail-left"  href="#/subjectInfo/1">
-                  <img src="./img/person.jpg">
-                  <h2 class="content-title">HP ID 00000012</h2>
-                  <p>这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的</p>
-              </a>
-            </div>
-            <div class="list">
-              <a class="item item-thumbnail-left" href="#/subjectInfo/1">
-                  <img src="./img/person.jpg">
-                  <h2>HP ID 00000012</h2>
-                  <p>这个做的真的挺好的</p>
+                  <h2 class="content-title">{{sub.realname}}</h2>
+                  <p>{{sub.title}}</p>
               </a>
             </div>
           </li>

@@ -5,13 +5,32 @@
 	  </div>
 	  <h1 class="title">我的信息</h1>
 	  <div class="buttons">
-	    <button class="button button-clear">编辑</button>
+	    <button class="button button-clear" ng-click="editorFun()">编辑</button>
 	  </div>
 	</ion-header-bar>
-  <ion-content>
-    <ul class="content-ul">
-    	<li>姓名：</li>
-    	<li>性别：</li>
-    </ul>
+  <ion-content class="mine-info">
+    <div class="list">
+        <label class="item item-input">
+          <span class="input-label">姓名：{{user.NAME}}</span>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">性别：{{user.SEX==0?'男':'女'}}</span>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">学校：{{user.SCHOOL}}</span>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">专业：{{user.PROFESS}}</span>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">班级：{{user.CLASSG}}</span>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">手机：{{user.MOBILE}}</span>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">爱好：{{user.HOBBY}}</span>
+        </label>
+      </div>
   </ion-content>
 </ion-view>

@@ -13,12 +13,15 @@
 
   <ion-side-menu side="left" width="150">
     <ion-header-bar class="bar-stable">
-      <h1 class="title">Left</h1>
+      <h1 class="title">欢迎 {{name}} ！</h1>
     </ion-header-bar>
     <ion-content>
       <ion-list>
         <ion-item menu-close href="#/mine">
           我的信息
+        </ion-item>
+        <ion-item menu-close href="#/update">
+          修改密码
         </ion-item>
         <ion-item menu-close ng-click="loginOut();">
           退出登录

@@ -32,7 +32,7 @@
 a{
 	text-decoration:none;
 }
-..popup-head {
+.popup-head {
 	background-color: #0096d6;
 }
 .icon.white-word {
@@ -60,7 +60,7 @@ a{
     border: 1px solid #12c1f6;
     color: #60D5F6;
 }
-.login-user input[type='text'],input[type='password'],.login-but input[type='button']{
+.login-user input[type='text'],.login-user input[type='password'],.login-but input[type='button']{
 	width: 90%;
 	text-transform: none;
 	font-size: 18px;
@@ -89,7 +89,7 @@ a{
 /***今日头条页***/
 .content-ul {
 	background:#fff;
-	width:98%;
+	width:95%;
 	margin:10px auto;
 	border-radius: 5px;
 }
@@ -115,6 +115,7 @@ a{
 }
 .content-title {
 	font-weight: bold;
+	color: #000; 
 }
 /*hp 活动*/
 .list.activity-hp .item-thumbnail-left{
@@ -198,4 +199,32 @@ ion-modal-view .item-input input, ion-modal-view .item-input textarea{
 }
 .publish-say label {
 	border:none;
+}
+.introduce img {
+	width: 100%;
+	height:100%;
+}
+.introduce a {
+	position: absolute;
+    bottom: 50px;
+    left: 47%;
+    border: 1px solid #ccc;
+    width: 70px;
+    text-align: center;
+    border-radius: 10px;
+    color:#ccc;
+}
+.mine-info{
+	margin:10px 10px 0 10px;
+}
+.mine-info label{
+	border:none;
+}
+.mine-info .input-label{
+	width: 70px;
+}
+.mine-info input[type='text'],.mine-info textarea,.mine-info input[type='password']{
+	border:1px solid #ccc;
+	margin-right: 40px;
+	padding-left: 10px;
 }

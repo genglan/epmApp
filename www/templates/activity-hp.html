@@ -3,16 +3,10 @@
   		<ul class="content-ul">
           <li class="content-title">Hp活动：</li>
           <li class="comment-li">
-            <div class="list activity-hp">
-              <a class="item item-thumbnail-left" href="#/activityInfo/1">
+            <div class="list activity-hp" ng-repeat=" activing in activityList">
+              <a class="item item-thumbnail-left" href="#/activityInfo/{{activing.id}}">
                   <img src="./img/activity.jpg">
-                  <p>这个做的真的挺好的这个做的真的挺</p>
-              </a>
-            </div>
-            <div class="list activity-hp">
-              <a class="item item-thumbnail-left" href="#/activityInfo/1">
-                  <img src="./img/activity.jpg">
-                  <p>这个做的真的挺好的</p>
+                  <p>{{activing.title}}</p>
               </a>
             </div>
           </li>
@@ -20,16 +14,10 @@
       <ul class="content-ul">
           <li class="content-title">已结束活动：</li>
           <li class="comment-li">
-            <div class="list activity-hp">
-              <a class="item item-thumbnail-left" href="#/activityInfo/1">
+            <div class="list activity-hp" ng-repeat=" actived in activedList">
+              <a class="item item-thumbnail-left" href="#/activityInfo/{{actived.id}}">
                   <img src="./img/activity.jpg">
-                  <p>这个做的真的挺好的这个做的真的挺</p>
-              </a>
-            </div>
-            <div class="list activity-hp">
-              <a class="item item-thumbnail-left" href="#/activityInfo/1">
-                  <img src="./img/activity.jpg">
-                  <p>这个做的真的挺好的</p>
+                  <p>{{actived.title}}</p>
               </a>
             </div>
           </li>

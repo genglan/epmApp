@@ -2,8 +2,8 @@
 	<ion-pane class="login">
 		<div class="login-logo"></div>
 		<div class="login-user">
-			<input type="text" type="text" placeholder="用户名" autocapitalize="off">
-			<input type="password" placeholder="密码" autocapitalize="off">
+			<input type="text" ng-model="user.account" type="text" required="required" placeholder="用户名" autocapitalize="off">
+			<input type="password" ng-model="user.pwd" placeholder="密码" required="required" autocapitalize="off">
 		</div>
 		<div class="login-but">
 			<input type="button" class="" ng-click="loginFun();"  value="登陆"/>

@@ -1,0 +1,27 @@
+<ion-view>
+  <ion-header-bar>
+  <div class="buttons">
+      <button class="button button-clear" ng-click="comebackFun()">返回</button>
+   </div>
+    <h1 class="title" style="color:#fff;">修改密码</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="updatePwd();">保存</button>
+    </div>
+  </ion-header-bar>
+  <ion-content class="mine-info">
+    <div class="list">
+        <label class="item item-input">
+          <span class="input-label">原&nbsp;&nbsp;密&nbsp;&nbsp;码：</span>
+          <input type="password" ng-model="pwdInfo.oldpwd">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">新&nbsp;&nbsp;密&nbsp;&nbsp;码：</span>
+          <input type="password" ng-model="pwdInfo.newpwd">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">确认密码：</span>
+          <input type="password" ng-model="pwdInfo.newpwd2">
+        </label>
+      </div>
+  </ion-content>
+</ion-view>

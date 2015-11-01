@@ -1,16 +1,16 @@
 <ion-view view-title="Say Hi">
 	 <ion-content class="say-hi">
   		<ul class="content-ul">
-          <li class="content-title">今天Say Hi 的同学们：</li>
-          <li class="comment-li">
+          <!-- <li class="content-title">今天Say Hi 的同学们：</li> -->
+          <li class="comment-li" ng-repeat = "say in sayList">
             <div class="list">
-              <a class="item item-thumbnail-left" href="#/info/1/001">
+              <a class="item item-thumbnail-left" href="#/info/1/{{say.id}}">
                   <span>
                       <img src="./img/person.jpg">
-                      <h2 class="content-title">00000012</h2>
+                      <h2 class="content-title">{{say.realname}}</h2>
                   </span>
                   <span>
-                      <p>这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的</p>
+                      <p>{{say.content}}</p>
                   </span>
               </a>
             </div>   

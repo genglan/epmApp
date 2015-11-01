@@ -1,7 +1,7 @@
 <ion-view>
   <ion-header-bar align-title="left" class="bar-positive">
     <div class="buttons">
-      <button class="button">返回</button>
+      <button class="button" onclick="javascript:history.back(-1);">返回</button>
     </div>
     <h1 class="title">活动详情</h1>
   </ion-header-bar>
@@ -23,6 +23,6 @@
       </ul>
     </ion-content>
     <ion-footer-bar class="bar-assertive">
-        <input type="button" class="apply" value="我要报名">
+        <input type="button" class="apply" ng-click="applyFun();" value="我要报名">
     </ion-footer-bar>
 </ion-view>

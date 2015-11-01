@@ -1,7 +1,7 @@
 <ion-view>
   <ion-header-bar align-title="left" class="bar-positive">
     <div class="buttons">
-      <button class="button">返回</button>
+      <button class="button" onclick="javascript:history.back(-1);">返回</button>
     </div>
     <h1 class="title">{{title}}</h1>
   </ion-header-bar>
@@ -12,10 +12,10 @@
               <a class="item item-thumbnail-left" style="min-height:130px;" href="#">
                   <span>
                       <img src="./img/person.jpg">
-                      <h2 class="content-title">00000012</h2>
+                      <h2 class="content-title">{{info.realname}}</h2>
                   </span>
                   <span>
-                      <p>这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的</p>
+                      <p>{{info.content}}</p>
                   </span>
               </a>
             </div>   
@@ -24,22 +24,15 @@
       <ul class="content-ul">
           <li class="content-title">相关评论：</li>
           <li class="publish-comment">
-              <div class="list"><textarea  rows="3"></textarea></div>
-              <input type="button" value="发表">
+              <div class="list"><textarea id="content"  rows="3"></textarea></div>
+              <input type="button" ng-click="commentFun();" value="发表">
           </li>
           <li class="comment-li">
-            <div class="list">
+            <div class="list" ng-repeat="c in commonList">
               <a class="item item-thumbnail-left" href="#">
                   <img src="./img/person.jpg">
-                  <h2 class="content-title">HP ID 00000012</h2>
-                  <p>这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的这个做的真的挺好的</p>
-              </a>
-            </div>
-            <div class="list">
-              <a class="item item-thumbnail-left" href="#">
-                  <img src="./img/person.jpg">
-                  <h2>HP ID 00000012</h2>
-                  <p>这个做的真的挺好的</p>
+                  <h2 class="content-title">{{c.realname}}</h2>
+                  <p>{{c.content}}</p>
               </a>
             </div>
           </li>
