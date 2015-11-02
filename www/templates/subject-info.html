@@ -10,15 +10,17 @@
           <li class="comment-li">
             <div class="list activity-hp">
               <a class="item item-thumbnail-left" href="#">
-                  <img src="./img/activity.jpg">
+                  <img src="{{imgPath}}">
                   <p>{{info.title}}</p>
               </a>
             </div>
-           
           </li>
           <li class="content-title">{{info.realname}}：</li>
-          <li class="comment-li">
-             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{info.content}}</p>
+          <li class="comment-li" id="subjectContent">
+             
+          </li>
+          <li class="img-word-li" ng-repeat="i in imgList">
+            <img src="{{i.imgpath}}">
           </li>
       </ul>
       <ul class="content-ul">

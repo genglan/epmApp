@@ -184,7 +184,6 @@ angular.module('starter.controllers', [])
     //发布评论
     $scope.subCommnet = function(){
         var content = document.getElementById("content").value;
-        alert(content)
         initData.publishFun({
             url:Variables.serverUrl+"/epmnew/addcom.action",
             data:{
@@ -278,7 +277,7 @@ angular.module('starter.controllers', [])
     }
 })
 //应用首页 tab 每日话题
-.controller('SubjectCtrl', function($scope,initData,Variables,$stateParams,$ionicPopup) {
+.controller('SubjectCtrl', function($scope,initData,Variables,$stateParams,$ionicPopup,$compile) {
   //查询每日话题 
     initData.loadListFun({
         url:Variables.serverUrl+'/epmday/list.action',
@@ -286,15 +285,23 @@ angular.module('starter.controllers', [])
            $scope.subJectList = data;
         }
     });
+    //查询详情
     var id = $stateParams.ID;
-    if("" != id){
+    if(!!id){
         initData.loadInfoFun({
             url:Variables.serverUrl+'/epmday/getday.action?dayid='+id,
             callBackFun:function (data){
-               var info = data['LIST'][0];
-               var commonList = data['COMMENT'];
-               $scope.info = info;
-               $scope.commonList = commonList;
+                var info = data['LIST'][0];
+                var commonList = data['COMMENT'];
+                var imgList = data['IMGLIST'];
+                $scope.info = info;//详情
+                $scope.commonList = commonList;//评论列表
+                $scope.imgList = imgList;//图片列表
+                $scope.imgPath = imgList[0].imgpath;//详情页面小图片取图片列表的第一张
+                var str="<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+$scope.info.content+"</p>"
+                var htmlStr = $compile(str)($scope);
+                var el = document.getElementById("subjectContent");
+                angular.element(el).html('').append(htmlStr);
             }
         })  
     }
@@ -390,7 +397,7 @@ angular.module('starter.controllers', [])
     }
 })
 //应用首页 tab Hp活动
-.controller('ActivityCtrl', function($scope,initData,Variables,$stateParams,$ionicPopup) {
+.controller('ActivityCtrl', function($scope,initData,Variables,$stateParams,$ionicPopup,$compile) {
    //查询活动列表
    initData.loadActivityFun({
         callBackFun:function (data){ 
@@ -398,12 +405,19 @@ angular.module('starter.controllers', [])
            $scope.activedList =data['ACTIVED'];
         }
     });  
-   var id = $stateParams.ID;
-   if("" != id){
+   var id = $stateParams.ID;  
+   if(!!id){
         initData.loadInfoFun({
             url:Variables.serverUrl+'/epmactive/getactive.action?activeid='+id,
             callBackFun:function (data){
-                alert(data)
+                $scope.activityInfo = data["LIST"][0];
+                var str="<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+$scope.activityInfo.content+"</p>"
+                var htmlStr = $compile(str)($scope);
+                var el = document.getElementById("avtivityContent");
+                angular.element(el).html('').append(htmlStr);
+                $scope.imgList = data['IMGLIST'];//活动相关图片
+                $scope.userList = data['USERLIST'];//已报名名单
+                $scope.imgPath = data['IMGLIST'][0].imgpath;//详情页面小图片取图片列表的第一张
             }
         })  
    }

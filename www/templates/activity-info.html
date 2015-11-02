@@ -10,15 +10,17 @@
           <li class="comment-li">
             <div class="list activity-hp">
               <a class="item item-thumbnail-left" href="#">
-                  <img src="./img/activity.jpg">
-                  <p>这个做的真的挺好的这个做的真的挺</p>
+                  <img src="{{imgPath}}">
+                  <p>{{activityInfo.title}}</p>
               </a>
             </div>
-           
           </li>
           <li class="content-title">活动介绍：</li>
-          <li class="comment-li">
-             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个做的真的挺好的这个做的真的挺</p>
+          <li class="comment-li" id="avtivityContent">
+            
+          </li>
+          <li class="img-word-li" ng-repeat="i in imgList">
+            <img src="{{i.imgpath}}">
           </li>
       </ul>
     </ion-content>
