@@ -114,9 +114,10 @@ a{
 .content-ul li.paragraph-li{
 	line-height: 30px;
 }
-.content-title {
+h2.content-title {
 	font-weight: bold;
 	color: #000; 
+	font-size: 12px;
 }
 /*hp 活动*/
 .list.activity-hp .item-thumbnail-left{
@@ -228,4 +229,21 @@ ion-modal-view .item-input input, ion-modal-view .item-input textarea{
 	border:1px solid #ccc;
 	margin-right: 40px;
 	padding-left: 10px;
+}
+.content-ul li.user-list {
+	padding: 15px 0 10px 0;
+}
+.content-ul li.user-list table{
+	border:1px solid #ccc;
+	width: 100%;
+	text-align: center;
+}
+.content-ul li.user-list table tr:first-child{
+	font-weight: bold;
+}
+.content-ul li.user-list table tr td{
+	width:50%;
+	height: 30px;
+	line-height: 30px;
+	border:1px solid #ccc;
 }

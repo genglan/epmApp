@@ -22,6 +22,13 @@
           <li class="img-word-li" ng-repeat="i in imgList">
             <img src="{{i.imgpath}}">
           </li>
+          <li class="content-title">已报名用户：</li>
+          <li class="comment-li user-list">
+            <table>
+                <tr><td>姓名</td><td>手机号码</td></tr>
+                <tr ng-repeat="user in userList"><td>{{user.name | indexOfFilter:'1'}}</td><td>{{user.mobile | indexOfFilter:'4'}}</td></tr>
+            </table>
+          </li>
       </ul>
     </ion-content>
     <ion-footer-bar class="bar-assertive">

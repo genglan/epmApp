@@ -1,7 +1,10 @@
 <ion-view view-title="Say Hi">
+  <ion-nav-buttons side="right">
+    <a class="button button-icon icon white-word" href="#">我的Say</a>
+  </ion-nav-buttons>
 	 <ion-content class="say-hi">
   		<ul class="content-ul">
-          <!-- <li class="content-title">今天Say Hi 的同学们：</li> -->
+          <!-- <li class="content-title">今天Say Hi 的同学们：</li> {{say.createtime | dateFilter}}-->
           <li class="comment-li" ng-repeat = "say in sayList">
             <div class="list">
               <a class="item item-thumbnail-left" href="#/info/1/{{say.id}}">

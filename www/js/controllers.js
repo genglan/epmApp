@@ -33,18 +33,28 @@ angular.module('starter.controllers', [])
             callBackFun:function (data){
                 window.localStorage.setItem("USERID",data['USERID']);
                 $rootScope.name = data['NAME'];
-                $ionicPopup.confirm({
-                    title: "提示信息",
-                    content: "登陆成功！赶紧跟大家say hi 一下吧！",
-                    okText:'立即say hi',
-                    cancelText: '下一次吧'
-                }).then(function (res) {
-                    if (res) {
-                        $state.go("publishSay");//点击立即say hi 跳转到发布say hi页面
-                    }else{
+                //alert(typeof data['SAYHI'])
+                if("false" == data['SAYHI']){
+                    $ionicPopup.confirm({
+                        title: "提示信息",
+                        content: "登陆成功！赶紧跟大家say hi 一下吧！",
+                        okText:'立即say hi',
+                        cancelText: '下一次吧'
+                    }).then(function (res) {
+                        if (res) {
+                            $state.go("publishSay");//点击立即say hi 跳转到发布say hi页面
+                        }else{
+                            $state.go("app.tab.headlines");//如果点击下次直接跳到应用首页 
+                        };
+                    });
+                }else{
+                    $ionicPopup.alert({
+                        title: '提示信息',
+                        content: "登陆成功！"
+                    }).then(function (res) {
                         $state.go("app.tab.headlines");//如果点击下次直接跳到应用首页 
-                    };
-                });
+                    }); 
+                }    
             }
          })   
     }
