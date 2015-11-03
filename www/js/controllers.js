@@ -60,7 +60,7 @@ angular.module('starter.controllers', [])
     }
 })
 //我的信息
-.controller('MineCtrl', function($scope,$state,$ionicPopup,Variables,initData) {
+.controller('MineCtrl', function($scope,$state,$ionicPopup,Variables,initData,$ionicActionSheet) {
     $scope.pwdInfo= {
         oldpwd:'',
         newpwd:'',
@@ -151,6 +151,31 @@ angular.module('starter.controllers', [])
             }
         });
     }
+    //用户头像上传
+    $scope.upload = function(){
+        $ionicActionSheet.show({
+            buttons: [ 
+                {
+                    text: '从相册中选取'
+                }
+            ],
+            cancelText: '取消',
+            cancel: function () {
+                console.log('CANCELLED');
+            },
+            buttonClicked: function (index) { 
+                getPhotoFromAlbum(1, function (imageURL) { 
+                       document.getElementById("test_img").src = imageURL+"?"+Math.random(); 
+                       var IMG_UPLOAD_URL = Variables.serverUrl+"/epmupload/upload.action"; 
+                       uploadImage(IMG_UPLOAD_URL, imageURL, window.localStorage.USERID,'',function (imgurl) {
+                            
+                       }); 
+                       
+                }); 
+                return true;
+            }
+        });
+    }
 })
 //应用首页 tab
 .controller('TableCtrl', function($scope,$state) {
@@ -162,13 +187,16 @@ angular.module('starter.controllers', [])
         template: 'Loading...'
     });
     //查询今日头条
+    $scope.newsCommentList = [];
+    var totalPage = 0;
     initData.loadInfoFun({
         url:Variables.serverUrl+"/epmnew/news.action",
         callBackFun:function (data){
             $scope.newsid = data.NEWSID;
-            $scope.newsCommentList = data.COMMENT;
             var str1 = ''; 
             var imgList = data.IMGLIST;
+            $scope.newsCommentList = data.COMMENT; //新闻
+            totalPage = data.TOTALPAGE ;//总页数
             if(imgList.length>0){
                 for(var i =0 ;i <imgList.length ;i++ ){
                     str1 +='<ion-slide><div class="box"><img src="'+imgList[i].filepath+'" /></div></ion-slide>';
@@ -202,6 +230,7 @@ angular.module('starter.controllers', [])
                 newsid:$scope.newsid   
             },callBackFun:function (data){
                 if(data['RESULT_CODE'] == '0'){
+                    $scope.loadMore();
                     $ionicPopup.alert({
                         title: '提示信息',
                         content: "评论成功！"
@@ -217,7 +246,29 @@ angular.module('starter.controllers', [])
             }
             
         });
-    }  
+    } 
+    //加载更多
+    var page = 1;
+    $scope.loadMore = function (){
+        var item = [];
+        page++;
+        initData.loadInfoFun({
+            url:Variables.serverUrl+"/epmnew/news.action?page="+page,
+            callBackFun:function (data){
+                item = data.COMMENT;
+                $scope.newsCommentList = item.concat($scope.newsCommentList); 
+                $scope.$broadcast('scroll.infiniteScrollComplete'); 
+            }
+        });    
+    }
+    //判断是否需要加载
+    $scope.moreDataCanBeLoaded = function (){
+        if(page < totalPage-1){
+            return true;
+        }else{
+            return false;
+        }   
+    }
 })
 //应用首页 tab Say Hi ~
 .controller('SayCtrl', function($scope,initData,Variables,$ionicPopup,$state) {
@@ -307,7 +358,11 @@ angular.module('starter.controllers', [])
                 $scope.info = info;//详情
                 $scope.commonList = commonList;//评论列表
                 $scope.imgList = imgList;//图片列表
-                $scope.imgPath = imgList[0].imgpath;//详情页面小图片取图片列表的第一张
+                if(imgList.length>0){
+                    $scope.imgPath = imgList[0].imgpath;//详情页面小图片取图片列表的第一张
+                }else{
+                   $scope.imgPath = './img/nothing.jpg' 
+                } 
                 var str="<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+$scope.info.content+"</p>"
                 var htmlStr = $compile(str)($scope);
                 var el = document.getElementById("subjectContent");
@@ -427,7 +482,11 @@ angular.module('starter.controllers', [])
                 angular.element(el).html('').append(htmlStr);
                 $scope.imgList = data['IMGLIST'];//活动相关图片
                 $scope.userList = data['USERLIST'];//已报名名单
-                $scope.imgPath = data['IMGLIST'][0].imgpath;//详情页面小图片取图片列表的第一张
+                if(data['IMGLIST'].length>0){
+                    $scope.imgPath = data['IMGLIST'][0].imgpath;//详情页面小图片取图片列表的第一张
+                }else{
+                   $scope.imgPath = './img/nothing.jpg' 
+                }   
             }
         })  
    }

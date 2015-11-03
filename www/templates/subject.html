@@ -5,7 +5,7 @@
           <li class="comment-li">
             <div class="list activity-hp" ng-repeat="sub in subJectList">
               <a class="item item-thumbnail-left" href="#/subjectInfo/{{sub.id}}">
-                  <img src="./img/activity.jpg">
+                  <img src='{{!sub.imgpath ?"./img/nothing.jpg":sub.imgpath}}'>
                   <p>{{sub.title}}</p>
               </a>
             </div>

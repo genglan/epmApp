@@ -247,3 +247,6 @@ ion-modal-view .item-input input, ion-modal-view .item-input textarea{
 	line-height: 30px;
 	border:1px solid #ccc;
 }
+body {
+  cursor: url('http://ionicframework.com/img/finger.png'), auto;
+}

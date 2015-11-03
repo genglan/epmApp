@@ -5,7 +5,7 @@
           <li class="comment-li">
             <div class="list activity-hp" ng-repeat=" activing in activityList">
               <a class="item item-thumbnail-left" href="#/activityInfo/{{activing.id}}">
-                  <img src="./img/activity.jpg">
+                  <img src='{{!activing.imgpath ?"./img/nothing.jpg":activing.imgpath}}'>
                   <p>{{activing.title}}</p>
               </a>
             </div>
@@ -16,7 +16,7 @@
           <li class="comment-li">
             <div class="list activity-hp" ng-repeat=" actived in activedList">
               <a class="item item-thumbnail-left" href="#/activityInfo/{{actived.id}}">
-                  <img src="./img/activity.jpg">
+                  <img src='{{!actived.imgpath ?"./img/nothing.jpg":actived.imgpath}}'>
                   <p>{{actived.title}}</p>
               </a>
             </div>

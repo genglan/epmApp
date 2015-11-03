@@ -1,6 +1,6 @@
 <ion-view view-title="今日头条">
-  	<ion-content>
-  		<ul class="content-ul" id="headInfo">
+  <ion-content >
+  	<ul class="content-ul" id="headInfo">
   			
   		</ul>
       <ul class="content-ul">
@@ -10,7 +10,7 @@
               <input type="button" ng-click="subCommnet();" value="发表" >
           </li>
           <li class="comment-li">
-            <div class="list" ng-repeat="news in newsCommentList">
+           <div class="list" ng-repeat="news in newsCommentList">
               <a class="item item-thumbnail-left" href="#">
                   <img src="./img/person.jpg">
                   <h2 class="content-title">{{news.name}}</h2>
@@ -19,5 +19,6 @@
             </div>
           </li>      
       </ul>
-  	</ion-content>
+  <ion-infinite-scroll ng-if="moreDataCanBeLoaded()"  on-infinite="loadMore()"> </ion-infinite-scroll>
+</ion-content>
 </ion-view>

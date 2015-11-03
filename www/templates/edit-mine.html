@@ -10,6 +10,11 @@
   </ion-header-bar>
   <ion-content class="mine-info">
     <div class="list">
+        <label class="item item-input"  ng-click="upload();">
+          <span class="input-label">
+              <span id="input-label" style="line-height:70px;">头像：<img src="img/person.jpg" id="test_img" style="width:70px;height: 70px;border-radius: 30px;"></span>
+          </span>
+        </label>
         <label class="item item-input">
           <span class="input-label">姓名：</span>
           <input type="text" ng-model="user.NAME">
