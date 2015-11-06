@@ -9,10 +9,6 @@
 .bar.bar-stable .title{
 	color:#fff;
 }
-.tabs-positive > .tabs, .tabs.tabs-positive{
-	background-color:#0096d6;
-	border-color:#0096d6;
-}
 .bar .title.title-left{
 	text-align:center;
 }
@@ -247,6 +243,150 @@ ion-modal-view .item-input input, ion-modal-view .item-input textarea{
 	line-height: 30px;
 	border:1px solid #ccc;
 }
+.interaction ul{
+	margin: 20px auto;
+}
+.interaction ul li{
+	display: inline-block;
+	width:100%;
+	text-align: center;
+}
+.interaction a{
+    display: inline-block;
+    width: 150px;
+    height: 100px;
+    line-height: 100px;
+    border: 1px solid #ccc;
+    text-align: center;
+    margin-right: 10px;
+    font-size: 20px;
+    background: url(../img/background.png) no-repeat center;
+}
+/*.headlines-on{
+	background: url(../img/headed.png) no-repeat center;
+}
+.headlines-off{
+	background: url(../img/head.png) no-repeat center;
+}
+.interaction-on{
+	background: url(../img/interactioned.png) no-repeat center;
+}
+.interaction-off{
+	background: url(../img/interaction.png) no-repeat center;	
+}
+.subject-on{
+	background: url(../img/subjected.png) no-repeat center;
+}
+.subject-off{
+	background: url(../img/subject.png) no-repeat center;	
+}
+.activity-on{
+	background: url(../img/activityed.png) no-repeat center;
+}
+.activity-off{
+	background: url(../img/activity.png) no-repeat center;
+}
+.tab-item .icon{
+	height: 30px;
+}
+.tab-title{
+	font-size: 12px;
+}*/
 body {
   cursor: url('http://ionicframework.com/img/finger.png'), auto;
+}
+
+/*加载更多*/
+.load_more {
+    color: #a3a3a3;
+    font-size: 1.5rem;
+    padding: 1rem 0 1.5rem;
+    text-align: center;
+}
+.load_more .load_moreIcon{
+	display: inline-block;
+	vertical-align: middle;
+	width:30px; height:30px;
+	margin:0 .5rem 0 -1rem;
+	-webkit-transition-property:-webkit-transform;	
+
+	background:url(../img/pull-icon@2x.png) 0 0 no-repeat;
+	-webkit-background-size:cover; background-size:cover;
+	background-position:0 100%;
+
+	transform:rotate(0deg) translateZ(0);
+	transition-duration:0ms;
+	animation-name:loading;
+	animation-duration:2s;
+	animation-iteration-count:infinite;
+	animation-timing-function:linear;
+
+	-webkit-transform:rotate(0deg) translateZ(0);
+	-webkit-transition-duration:0ms;
+	-webkit-animation-name:loading;
+	-webkit-animation-duration:2s;
+	-webkit-animation-iteration-count:infinite;
+	-webkit-animation-timing-function:linear;
+}
+
+@keyframes loading {
+	from { transform:rotate(0deg) translateZ(0); 
+	}
+	to { transform:rotate(360deg) translateZ(0); }
+}
+@-webkit-keyframes loading {
+	from { -webkit-transform:rotate(0deg) translateZ(0); }
+	to { -webkit-transform:rotate(360deg) translateZ(0); }
+}
+.overflow{
+	height: 100%;
+	overflow: hidden;
+}
+/*加载更多样式*/
+.ui-loadmore {
+	height: 36px;
+    line-height: 36px;
+    background-color: #fff;
+    text-align: center;
+    border: 1px solid #ebedef;
+    border-radius: 1px;
+    color: #545454;
+    margin: 14px 40px;
+}
+
+.ui-loading-wrap {
+    display: -webkit-box;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    text-align: center;
+    height: 40px;
+}
+.icon{
+  -webkit-animation-name: fadeIn; /*动画名称*/
+  -webkit-animation-duration: 0.5s; /*动画持续时间*/
+  -webkit-animation-iteration-count: 1; /*动画次数*/
+  -webkit-animation-delay: 0s; /*延迟时间*/
+}
+.ui-loading-wrap {
+  display: -webkit-box;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  text-align: center;
+  height: 40px; }
+.ui-loading-wrap:active{
+background-color: #f8f9fa;
+}
+.ui-loading-wrap .ui-loading {
+    margin: 10px;
+}
+.ui-loading {
+    -webkit-animation: rotate 1s steps(12) infinite;
+}
+.ui-loading {
+    width: 20px;
+    height: 20px;
+    display: block;
+    background: url(loading_sprite.png) no-repeat;
+    -webkit-background-size: auto 20px;
+
 }

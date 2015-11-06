@@ -1,4 +1,4 @@
-<ion-view view-title="Hp活动">
+<ion-view view-title="活动">
   <ion-content>
   		<ul class="content-ul">
           <li class="content-title">Hp活动：</li>
@@ -21,6 +21,15 @@
               </a>
             </div>
           </li>
+          <div class="list" style="height:100px;">
+          		 <div class="ui-loadmore ui-loading-wrap"  id="div_list">
+	 
+						<p id="loading_start" ng-click="loadMore()">加载更多</p>
+					
+					    <i class="ui-loading icon" id="loading_end1" style="display:none"></i>
+				    	<p id="loading_end2" style="display:none">加载中</p> 
+				  </div>  
+          </div>
       </ul>
     </ion-content>
 </ion-view>

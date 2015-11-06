@@ -1,7 +1,13 @@
-<ion-view view-title="Say Hi">
-  <ion-nav-buttons side="right">
-    <a class="button button-icon icon white-word" href="#">我的Say</a>
-  </ion-nav-buttons>
+<ion-view>
+  <ion-header-bar align-title="left" class="bar-positive">
+    <div class="buttons">
+      <button class="button button-clear" ng-click="callBack('app.tab.interaction')">返回</button>
+    </div>
+    <h1 class="title">Say Hi</h1>
+    <div class="buttons">
+      <button class="button button-icon button-clear ion-navicon" ng-click="openPopover($event)"...</button>
+    </div>
+  </ion-header-bar>
 	 <ion-content class="say-hi">
   		<ul class="content-ul">
           <!-- <li class="content-title">今天Say Hi 的同学们：</li> {{say.createtime | dateFilter}}-->
@@ -9,15 +15,38 @@
             <div class="list">
               <a class="item item-thumbnail-left" href="#/info/1/{{say.id}}">
                   <span>
-                      <img src="./img/person.jpg">
+                      <img ng-src="{{!say.imgpath ?'./img/nouser.jpg':say.imgpath}}">
                       <h2 class="content-title">{{say.realname}}</h2>
                   </span>
                   <span>
                       <p>{{say.content}}</p>
                   </span>
               </a>
-            </div>   
+            </div> 
           </li>
+          <div class="list" style="height:100px;">
+          		 <div class="ui-loadmore ui-loading-wrap"  id="div_list">
+	 
+						<p id="loading_start" ng-click="loadMore()">加载更多</p>
+					
+					    <i class="ui-loading icon" id="loading_end1" style="display:none"></i>
+				    	<p id="loading_end2" style="display:none">加载中</p> 
+				  </div>  
+          </div>  
       </ul>
+      <script id="my-popover.html" type="text/ng-template">
+      <ion-popover-view style="width:100px;height:70px;background-color:#fff;"> 
+        <ion-content>
+            <ul style="border-radius:5px;">
+              <li style="height:35px;line-height:35px;padding-left:10px;border-bottom:1px solid #ccc;">
+                <a  href="#" ng-click="sayHi()">Say</a>
+              </li>
+              <li style="height:35px;line-height:35px;padding-left:10px;">
+                <a  href="#" ng-click="refreshMySayHi()">刷新</a>
+              </li>
+            </ul>
+        </ion-content>
+      </ion-popover-view>
+      </script> 
     </ion-content>
 </ion-view>

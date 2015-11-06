@@ -1,5 +1,8 @@
  <ion-view>
   <ion-header-bar align-title="left" class="bar-positive">
+    <div class="buttons">
+      <button class="button button-clear" onclick="javascript:history.back(-1);">返回</button>
+    </div>
     <h1 class="title">Say hi</h1>
      <div class="buttons">
       <button class="button button-clear" ng-click="submitSay()">确定</button>
@@ -9,7 +12,7 @@
     <ul class="content-ul">
       <li><label class="item item-input">
           <span class="input-label">内容：</span>
-          <textarea id="content"  rows="3"></textarea>
+          <textarea id="content_txt"  rows="3"></textarea>
         </label>
       </li>
     </ul>

@@ -9,16 +9,20 @@
               <div class="list"><textarea id="content"  rows="3"></textarea></div>
               <input type="button" ng-click="subCommnet();" value="发表" >
           </li>
-          <li class="comment-li">
-           <div class="list" ng-repeat="news in newsCommentList">
-              <a class="item item-thumbnail-left" href="#">
-                  <img src="./img/person.jpg">
-                  <h2 class="content-title">{{news.name}}</h2>
-                  <p>{{news.content}}</p>
-              </a>
-            </div>
-          </li>      
-      </ul>
-  <ion-infinite-scroll ng-if="moreDataCanBeLoaded()"  on-infinite="loadMore()"> </ion-infinite-scroll>
+          <li class="comment-li" id="comment-li">
+            
+          </li>
+          <div class="list" style="height:100px;">
+          		 <div class="ui-loadmore ui-loading-wrap"  id="div_list">
+	 
+						<p id="loading_start" ng-click="loadMore()">加载更多</p>
+					
+					    <i class="ui-loading icon" id="loading_end1" style="display:none"></i>
+				    	<p id="loading_end2" style="display:none">加载中</p> 
+				  </div>  
+          </div>  
+           
+      </ul> 
+ 	 <!--<ion-infinite-scroll ng-if="moreDataCanBeLoaded()"  on-infinite="loadMore()"> </ion-infinite-scroll>-->
 </ion-content>
 </ion-view>

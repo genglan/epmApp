@@ -1,7 +1,7 @@
 <ion-view>
   <ion-header-bar align-title="left" class="bar-positive">
     <div class="buttons">
-      <button class="button" onclick="javascript:history.back(-1);">返回</button>
+      <button class="button button-clear" onclick="javascript:history.back(-1);">返回</button>
     </div>
     <h1 class="title">{{title}}</h1>
   </ion-header-bar>
@@ -11,7 +11,7 @@
             <div class="list">
               <a class="item item-thumbnail-left" style="min-height:130px;" href="#">
                   <span>
-                      <img src="./img/person.jpg">
+                      <img ng-src="{{!info.imgpath ?'./img/nouser.jpg':info.imgpath}}">
                       <h2 class="content-title">{{info.realname}}</h2>
                   </span>
                   <span>
@@ -30,7 +30,7 @@
           <li class="comment-li">
             <div class="list" ng-repeat="c in commonList">
               <a class="item item-thumbnail-left" href="#">
-                  <img src="./img/person.jpg">
+                  <img ng-src="{{!c.imgpath ?'./img/nouser.jpg':c.imgpath}}">
                   <h2 class="content-title">{{c.realname}}</h2>
                   <p>{{c.content}}</p>
               </a>

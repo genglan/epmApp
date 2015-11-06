@@ -1,15 +1,21 @@
-<ion-view view-title="Show me">
-  <ion-nav-buttons side="right">
-    <a class="button button-icon icon white-word" href="#" ng-click="showFun();">我要发布</a>
-  </ion-nav-buttons>
+<ion-view>
+   <ion-header-bar align-title="left" class="bar-positive">
+    <div class="buttons">
+      <button class="button button-clear" ng-click="callBack('app.tab.interaction')">返回</button>
+    </div>
+    <h1 class="title">Show me</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="showFun();">我要发布</button>
+    </div>
+  </ion-header-bar>
   <ion-content class="show">
-  		<ul class="content-ul">
+      <ul class="content-ul">
           <!-- <li class="content-title">今天show：</li> -->
           <li class="comment-li" ng-repeat="show in showList">
             <div class="list">
               <a class="item item-thumbnail-left" href="#/info/2/{{show.id}}">
                   <span>
-                      <img src="./img/person.jpg">
+                      <img ng-src="{{!show.imgpath ?'./img/nouser.jpg':show.imgpath}}">
                       <h2 class="content-title">{{show.realname}}</h2>
                   </span>
                   <span>
@@ -18,6 +24,15 @@
               </a>
             </div>   
           </li>
+          <div class="list" style="height:100px;">
+               <div class="ui-loadmore ui-loading-wrap"  id="div_list">
+   
+            <p id="loading_start" ng-click="loadMore()">加载更多</p>
+          
+              <i class="ui-loading icon" id="loading_end1" style="display:none"></i>
+              <p id="loading_end2" style="display:none">加载中</p> 
+          </div>  
+          </div>
       </ul>
     </ion-content>
 </ion-view>

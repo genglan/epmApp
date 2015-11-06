@@ -70,13 +70,23 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers','s
       }
     }
   })
-  //今日头条
+  //头条
   .state('app.tab.headlines', {
       url: '/headlines',
       views: {
         'tab-headlines': {
           templateUrl: 'templates/headlines.html',
           controller: 'HeadLinesCtrl'
+        }
+      }
+  })
+  //互动
+  .state('app.tab.interaction', {
+      url: '/interaction',
+      views: {
+        'tab-interaction': {
+          templateUrl: 'templates/interaction.html',
+          controller: 'TableCtrl'
         }
       }
   })
@@ -87,26 +97,18 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers','s
     controller:'SayCtrl'
   })
   //Say Hi ~
-  .state('app.tab.say', {
+  .state('say', {
       url: '/say',
-      views: {
-        'tab-say': {
-          templateUrl: 'templates/say-hi.html',
-          controller: 'SayCtrl'
-        }
-      }
+      templateUrl: 'templates/say-hi.html',
+      controller: 'SayCtrl'
   })
   //Show me ~
-  .state('app.tab.show', {
-      url: '/show',
-      views: {
-        'tab-show': {
-          templateUrl: 'templates/show-me.html',
-          controller: 'ShowCtrl'
-        }
-      }
+  .state('show-me', {
+      url: '/show-me',
+      templateUrl: 'templates/show-me.html',
+      controller: 'ShowCtrl'
   })
-  //每日话题
+  //话题
   .state('app.tab.subject', {
       url: '/subject',
       views: {
@@ -127,7 +129,7 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers','s
     templateUrl: "templates/info.html",
     controller:'InfoCtrl'
   })
-  //Hp活动
+  //活动
   .state('app.tab.activity', {
       url: '/activity',
       views: {

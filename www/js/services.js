@@ -2,7 +2,7 @@ angular.module('starter.services', [])
 // 公共变量 
 .factory("Variables",function (){
     return {
-        serverUrl :"http://123.56.41.109:8080/epm-i"  
+        serverUrl :"http://123.56.41.109:8080/epm-i" 
     }
 })
 //查询信息

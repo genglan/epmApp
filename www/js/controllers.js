@@ -17,7 +17,7 @@ angular.module('starter.controllers', [])
     });
     //进入
     $scope.toLoginFun = function (){
-        $state.go("login");
+        $state.go("login",{reload: true});
     }
 })
 //登陆
@@ -31,8 +31,12 @@ angular.module('starter.controllers', [])
          initData.loadInfoFun({
             url:Variables.serverUrl+"/epm/login.action?account="+$scope.user.account+"&password="+$scope.user.pwd+"",
             callBackFun:function (data){
-                window.localStorage.setItem("USERID",data['USERID']);
-                $rootScope.name = data['NAME'];
+                _USER_IMGPATH = data['IMGPATH'];
+                  if(!_USER_IMGPATH){ 
+			    	 _USER_IMGPATH =  "img/nouser.jpg";
+			   	   } 
+                _USER_NAME = data['NAME'];
+                _USER_ID = data['USERID'];
                 //alert(typeof data['SAYHI'])
                 if("false" == data['SAYHI']){
                     $ionicPopup.confirm({
@@ -42,9 +46,9 @@ angular.module('starter.controllers', [])
                         cancelText: '下一次吧'
                     }).then(function (res) {
                         if (res) {
-                            $state.go("publishSay");//点击立即say hi 跳转到发布say hi页面
+                            $state.go("publishSay",{reload: true});//点击立即say hi 跳转到发布say hi页面
                         }else{
-                            $state.go("app.tab.headlines");//如果点击下次直接跳到应用首页 
+                            $state.go("app.tab.headlines",{reload: true});//如果点击下次直接跳到应用首页 
                         };
                     });
                 }else{
@@ -52,7 +56,7 @@ angular.module('starter.controllers', [])
                         title: '提示信息',
                         content: "登陆成功！"
                     }).then(function (res) {
-                        $state.go("app.tab.headlines");//如果点击下次直接跳到应用首页 
+                        $state.go("app.tab.headlines",{reload: true});//如果点击下次直接跳到应用首页 
                     }); 
                 }    
             }
@@ -66,9 +70,13 @@ angular.module('starter.controllers', [])
         newpwd:'',
         newpwd2:''
     }
+    
+    
+    $scope.userImg = _USER_IMGPATH;  
+   
     //根据ID查询登陆人信息
     initData.loadUserById({
-        userid:window.localStorage.USERID,
+        userid:_USER_ID,
         callBackFun:function (data){
             $scope.user = data;
         }
@@ -82,17 +90,17 @@ angular.module('starter.controllers', [])
             cancelText: '取消'
         }).then(function (res) {
             if (res) {
-                $state.go("login");
+                $state.go("login",{reload: true});
             }
         });   
     }
     //去编辑
     $scope.editorFun = function (){
-        $state.go("edit");
+        $state.go("edit",{reload: true});
     }
     //我的信息页面返回
     $scope.comebackFun = function (){
-        $state.go("app.tab.headlines"); 
+        $state.go("app.tab.headlines",{reload: true}); 
     }
     
     //修改密码
@@ -100,7 +108,7 @@ angular.module('starter.controllers', [])
         initData.publishFun({
             url:Variables.serverUrl+"/epm/pwd.action",
             data:{
-                userid:window.localStorage.USERID,
+                userid:_USER_ID,
                 oldpwd:$scope.pwdInfo.oldpwd,
                 newpwd:$scope.pwdInfo.newpwd
             },
@@ -166,8 +174,9 @@ angular.module('starter.controllers', [])
             buttonClicked: function (index) { 
                 getPhotoFromAlbum(1, function (imageURL) { 
                        document.getElementById("test_img").src = imageURL+"?"+Math.random(); 
+                       _USER_IMGPATH = imageURL;
                        var IMG_UPLOAD_URL = Variables.serverUrl+"/epmupload/upload.action"; 
-                       uploadImage(IMG_UPLOAD_URL, imageURL, window.localStorage.USERID,'',function (imgurl) {
+                       uploadImage(IMG_UPLOAD_URL, imageURL, _USER_ID,'',function (imgurl) {
                             
                        }); 
                        
@@ -179,7 +188,10 @@ angular.module('starter.controllers', [])
 })
 //应用首页 tab
 .controller('TableCtrl', function($scope,$state) {
-    
+    //点击事件
+    $scope.clickFun = function (url){
+        $state.go(url,{reload: true});
+    }  
 })
 //应用首页 tab 今日头条
 .controller('HeadLinesCtrl', function($scope,$state,$ionicLoading,initData,$compile,Variables,$ionicPopup) {
@@ -194,9 +206,13 @@ angular.module('starter.controllers', [])
         callBackFun:function (data){
             $scope.newsid = data.NEWSID;
             var str1 = ''; 
-            var imgList = data.IMGLIST;
-            $scope.newsCommentList = data.COMMENT; //新闻
+            var imgList = data.IMGLIST; 
+            /**********Li jIE by 2015-11-04*****************/
+            _newAppend('comment-li',data.COMMENT); //新闻评论 
             totalPage = data.TOTALPAGE ;//总页数
+            if(totalPage <= 1){ 
+		    	$('#div_list').hide(); 
+            }
             if(imgList.length>0){
                 for(var i =0 ;i <imgList.length ;i++ ){
                     str1 +='<ion-slide><div class="box"><img src="'+imgList[i].filepath+'" /></div></ion-slide>';
@@ -222,15 +238,40 @@ angular.module('starter.controllers', [])
     //发布评论
     $scope.subCommnet = function(){
         var content = document.getElementById("content").value;
+        if(!content){
+         	$ionicPopup.alert({
+                title: '提示信息',
+                content: "请填写评论信息！"
+            });
+            return;
+        }
         initData.publishFun({
             url:Variables.serverUrl+"/epmnew/addcom.action",
             data:{
-                userid:window.localStorage.USERID,
+                userid:_USER_ID,
                 content:content,
                 newsid:$scope.newsid   
             },callBackFun:function (data){
                 if(data['RESULT_CODE'] == '0'){
+                	var map ={};
+					map['imgpath'] = _USER_IMGPATH;
+					map['name'] = _USER_NAME;
+					map['content'] = content;
+					
+					var list = [];
+					list.push(map);
+					
+					_newAppend('comment-li',list,'0'); //新闻评论
+					 
+                	document.getElementById("content").value = "";//清空下拉选择框 
                     $scope.loadMore();
+                    if(totalPage > 1){
+                    	$('#loading_start').show();
+				    	$('#loading_end1').hide();
+				    	$('#loading_end2').hide();
+                    }else{
+                    	$('#div_list').hide();  
+                    }
                     $ionicPopup.alert({
                         title: '提示信息',
                         content: "评论成功！"
@@ -250,17 +291,32 @@ angular.module('starter.controllers', [])
     //加载更多
     var page = 1;
     $scope.loadMore = function (){
+    	//点击切换状态 
+    	$('#loading_start').hide();
+    	$('#loading_end1').show();
+    	$('#loading_end2').show();
         var item = [];
         page++;
-        initData.loadInfoFun({
-            url:Variables.serverUrl+"/epmnew/news.action?page="+page,
-            callBackFun:function (data){
-                item = data.COMMENT;
-                $scope.newsCommentList = item.concat($scope.newsCommentList); 
-                $scope.$broadcast('scroll.infiniteScrollComplete'); 
-            }
-        });    
+        if(page <= totalPage){
+        	 initData.loadInfoFun({
+	            url:Variables.serverUrl+"/epmnew/listcomment.action?page="+page+"&newsid="+$scope.newsid,
+	            callBackFun:function (data){
+	                item = data.LIST;  
+	                totalPage = data.TOTALPAGE;
+	                _newAppend('comment-li',item); 
+	                if(page == totalPage){
+	                	$('#div_list').hide(); 
+	                }else{
+	                	$('#loading_start').show();
+				    	$('#loading_end1').hide();
+				    	$('#loading_end2').hide();
+	                } 
+	//                $scope.$broadcast('scroll.infiniteScrollComplete'); 
+	            }
+	        });  
+        } 
     }
+    
     //判断是否需要加载
     $scope.moreDataCanBeLoaded = function (){
         if(page < totalPage-1){
@@ -271,23 +327,103 @@ angular.module('starter.controllers', [])
     }
 })
 //应用首页 tab Say Hi ~
-.controller('SayCtrl', function($scope,initData,Variables,$ionicPopup,$state) {
+.controller('SayCtrl', function($scope,initData,Variables,$ionicPopup,$state,$ionicLoading,$ionicPopover,$http) {
+	 $ionicLoading.show({
+        template: 'Loading...'
+    }); 
+     // .fromTemplateUrl() 方法
+      $ionicPopover.fromTemplateUrl('my-popover.html', {
+        scope: $scope
+      }).then(function(popover) {
+        $scope.popover = popover;
+      });
+      //返回
+      $scope.callBack = function (url){
+        $state.go(url)
+      }
+      $scope.openPopover = function($event) {
+        $scope.popover.show($event);
+      };
+      $scope.closePopover = function() {
+        $scope.popover.hide();
+      };
+      // 清除浮动框
+      $scope.$on('$destroy', function() {
+        $scope.popover.remove();
+      });
+      // 在隐藏浮动框后执行
+      $scope.$on('popover.hidden', function() {
+        // 执行代码
+      });
+      // 移除浮动框后执行
+      $scope.$on('popover.removed', function() {
+        // 执行代码
+      });
+      
+      
+      //编辑sayhI
+      $scope.sayHi = function(){ 
+      		$scope.popover.hide();
+       		$state.go("publishSay",{reload: true});
+      }
+      
+      //刷新sayhI
+      $scope.refreshMySayHi = function(){
+       		 $scope.popover.hide();
+       		 //调用刷新接口
+       		 $http({
+		          url:Variables.serverUrl+"/sayhi/sayhirefresh.action?userid="+_USER_ID+"",
+		          method:'GET'
+		      }).success(function(data,header,config,status){
+		          if(data['RESULT_CODE'] == '0'){
+		          		initData.loadListFun({
+					        url:Variables.serverUrl+'/sayhi/list.action?page=1',
+					        callBackFun:function (data){ 
+					           $scope.sayList = data;
+					           $ionicLoading.hide();
+					        }
+					    });
+		          		$ionicPopup.confirm({
+		                  title: "提示信息",
+		                  content: "我的Say Hi刷新成功！",
+		                  okText:'关闭'
+		              }) 
+		          }else{
+		              $ionicPopup.confirm({
+		                  title: "提示信息",
+		                  content: "个人信息查询异常！",
+		                  okText:'确定',
+		                  cancelText: '取消'
+		              })
+		          }
+		      }).error(function(data,header,config,status){
+		          //处理响应失败
+		          $ionicPopup.confirm({
+		              title: "提示信息",
+		              content: "服务器响应失败",
+		              okText:'确定',
+		              cancelText: '取消'
+		          })
+		      });
+      }
+      
     //点击确定后
     $scope.submitSay =function (){
-       var content = document.getElementById("content").value;
+       var content = document.getElementById("content_txt").value;
         initData.publishFun({
             url:Variables.serverUrl+"/sayhi/sayhi.action",
             data:{
-                userid:window.localStorage.USERID,
+                userid:_USER_ID,
                 content:content
             }
             ,callBackFun:function (data){
-                if(data['RESULT_CODE'] == '0'){
+                if(data['RESULT_CODE'] == '0'){ 
                   $ionicPopup.alert({
                       title: '提示信息',
                       content: "say hi 成功！"
                   }).then(function (res) {
-                      $state.go("app.tab.say"); 
+                  	  document.getElementById("content_txt").value = "";
+                      $state.go("app.tab.say",{reload: true}); 
                   });  
               }else{
                     $ionicPopup.confirm({
@@ -305,18 +441,27 @@ angular.module('starter.controllers', [])
         url:Variables.serverUrl+'/sayhi/list.action?page=1',
         callBackFun:function (data){ 
            $scope.sayList = data;
+            $ionicLoading.hide();
         }
     });
 })
 //应用首页 tab Show me ~
-.controller('ShowCtrl', function($scope,$ionicModal,initData,Variables,$ionicPopup) {
+.controller('ShowCtrl', function($scope,$state,$ionicModal,initData,Variables,$ionicPopup,$ionicLoading) {
+	 $ionicLoading.show({
+        template: 'Loading...'
+    });
     //查询show list 
     initData.loadListFun({
         url:Variables.serverUrl+'/showme/list.action?page=1',
         callBackFun:function (data){ 
            $scope.showList = data;
+           $ionicLoading.hide();
         }
     });
+    //返回
+    $scope.callBack = function (url){
+        $state.go(url)
+    }
     //发布show
     $ionicModal.fromTemplateUrl('templates/publish.html', {
         scope: $scope
@@ -338,12 +483,16 @@ angular.module('starter.controllers', [])
     }
 })
 //应用首页 tab 每日话题
-.controller('SubjectCtrl', function($scope,initData,Variables,$stateParams,$ionicPopup,$compile) {
+.controller('SubjectCtrl', function($scope,initData,Variables,$stateParams,$ionicPopup,$compile,$ionicLoading) {
+	 $ionicLoading.show({
+        template: 'Loading...'
+    });
   //查询每日话题 
     initData.loadListFun({
         url:Variables.serverUrl+'/epmday/list.action',
         callBackFun:function (data){ 
            $scope.subJectList = data;
+            $ionicLoading.hide();
         }
     });
     //查询详情
@@ -377,7 +526,7 @@ angular.module('starter.controllers', [])
             url:Variables.serverUrl+'/epmday/addcom.action',
             data:{
                 dayid:$scope.info.id,
-                userid:window.localStorage.USERID,
+                userid:_USER_ID,
                 content:content
             },
             callBackFun:function (data){
@@ -400,7 +549,10 @@ angular.module('starter.controllers', [])
     }
 })
 //say hi type：1 ，show me type：2 
-.controller('InfoCtrl', function($scope,$stateParams,initData,Variables,$ionicPopup) {
+.controller('InfoCtrl', function($scope,$stateParams,initData,Variables,$ionicPopup,$ionicLoading) {
+	 $ionicLoading.show({
+        template: 'Loading...'
+    });
     var type = $stateParams.type;
     var id = $stateParams.ID;
     $scope.title = type == "1" ?'Say Hi':type == "2" ?'Show me':type == "3" ?'每日话题':'';
@@ -417,8 +569,9 @@ angular.module('starter.controllers', [])
         callBackFun:function (data){
            var info = data['LIST'][0];
            var commonList = data['COMMENT'];
-           $scope.info = info;
+           $scope.info = info; 
            $scope.commonList = commonList;
+           $ionicLoading.hide();
         }
     })
     //评论
@@ -428,14 +581,14 @@ angular.module('starter.controllers', [])
             url_sub = Variables.serverUrl+'/sayhi/sayhicommend.action';
             data = {
                 sayhiid:id,
-                userid:window.localStorage.USERID,
+                userid:_USER_ID,
                 content:content
             }
         }else if('2' == type){
             url_sub = Variables.serverUrl+'/showme/showmecommend.action';
             data = {
                 showmeid:id,
-                userid:window.localStorage.USERID,
+                userid:_USER_ID,
                 content:content
             }
         }
@@ -462,12 +615,16 @@ angular.module('starter.controllers', [])
     }
 })
 //应用首页 tab Hp活动
-.controller('ActivityCtrl', function($scope,initData,Variables,$stateParams,$ionicPopup,$compile) {
+.controller('ActivityCtrl', function($scope,initData,Variables,$stateParams,$ionicPopup,$compile,$ionicLoading) {
+	 $ionicLoading.show({
+        template: 'Loading...'
+    });
    //查询活动列表
    initData.loadActivityFun({
         callBackFun:function (data){ 
            $scope.activityList = data['ACTIVING'];
            $scope.activedList =data['ACTIVED'];
+           $ionicLoading.hide();
         }
     });  
    var id = $stateParams.ID;  
@@ -495,7 +652,7 @@ angular.module('starter.controllers', [])
        initData.publishFun({
             url:Variables.serverUrl+"/epmactive/useractive.action",
             data:{
-                userid:window.localStorage.USERID,
+                userid:_USER_ID,
                 activeid:id
             },
             callBackFun:function (data){
@@ -507,7 +664,7 @@ angular.module('starter.controllers', [])
                 }else{
                    $ionicPopup.confirm({
                         title: "提示信息",
-                        content: "报名异常！",
+                        content: data['RESULT_MSG'],
                         okText:'确定',
                         cancelText: '取消'
                     })

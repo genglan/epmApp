@@ -2720,7 +2720,7 @@ ion-infinite-scroll {
   top: 88px; }
 
 .has-tabs-top {
-  top: 93px; }
+  top: 53px; }
 
 .has-header.has-subheader.has-tabs-top {
   top: 137px; }
@@ -3521,7 +3521,7 @@ a.subdued {
       padding-top: 2px;
       border-top: none !important;
       border-bottom: none;
-      background-position: top;
+      
       background-size: 100% 1px;
       background-repeat: no-repeat; } }
 
@@ -4114,13 +4114,13 @@ ion-tabs.tabs-color-active-dark .tab-item {
 /* Allow parent element to have tabs-top */
 /* If you change this, change platform.scss as well */
 .tabs-top > .tabs, .tabs.tabs-top {
-  top: 44px;
+  
   padding-top: 0;
   background-position: bottom;
   border-top-width: 0;
   border-bottom-width: 1px; }
   .tabs-top > .tabs .tab-item.tab-item-active .badge, .tabs-top > .tabs .tab-item.active .badge, .tabs-top > .tabs .tab-item.activated .badge, .tabs.tabs-top .tab-item.tab-item-active .badge, .tabs.tabs-top .tab-item.active .badge, .tabs.tabs-top .tab-item.activated .badge {
-    top: 4%; }
+    }
 
 .tabs-top ~ .bar-header {
   border-bottom-width: 0; }
@@ -4339,7 +4339,7 @@ ion-tabs.tabs-color-active-dark .tab-item {
   .platform-ios.platform-cordova .modal-wrapper .modal .has-subheader {
     top: 88px; }
   .platform-ios.platform-cordova .modal-wrapper .modal .has-header.has-tabs-top {
-    top: 93px; }
+    top: 53px; }
   .platform-ios.platform-cordova .modal-wrapper .modal .has-header.has-subheader.has-tabs-top {
     top: 137px; }
   .modal-backdrop-bg {
