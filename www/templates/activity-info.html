@@ -9,9 +9,10 @@
   		<ul class="content-ul">
           <li class="comment-li">
             <div class="list activity-hp">
-              <a class="item item-thumbnail-left" href="#">
+              <a class="item item-avatar" href="#">
                   <img src="{{imgPath}}">
-                  <p>{{activityInfo.title}}</p>
+                  <h2 class="content-title"><label>{{activityInfo.createtime | dateFilter}}</label></h2>
+                  <p style="font-weight:bold;padding-left: 38px;">{{activityInfo.title}}</p>
               </a>
             </div>
           </li>
@@ -22,7 +23,7 @@
           <li class="img-word-li" ng-repeat="i in imgList">
             <img src="{{i.imgpath}}">
           </li>
-          <li class="content-title">已报名用户：</li>
+          <li class="content-title">已报名用户（{{activityInfo.totaluser}}）人：</li>
           <li class="comment-li user-list">
             <table>
                 <tr><td>姓名</td><td>手机号码</td></tr>
@@ -31,7 +32,7 @@
           </li>
       </ul>
     </ion-content>
-    <ion-footer-bar class="bar-assertive">
+    <ion-footer-bar class="bar-assertive" ng-show="showApply">
         <input type="button" class="apply" ng-click="applyFun();" value="我要报名">
     </ion-footer-bar>
 </ion-view>

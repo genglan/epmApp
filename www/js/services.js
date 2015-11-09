@@ -15,7 +15,7 @@ angular.module('starter.services', [])
       }).success(function(data,header,config,status){
           if(data['RESULT_CODE'] == '0'){
               var list = data['RESULT_JSON']['LIST'];
-              opts.callBackFun && opts.callBackFun(list);  
+              opts.callBackFun && opts.callBackFun(list,data['RESULT_JSON']['TOTALPAGE']);  
           }else{
               $ionicPopup.confirm({
                   title: "提示信息",
@@ -47,7 +47,7 @@ angular.module('starter.services', [])
             }else{
                 $ionicPopup.confirm({
                     title: "提示信息",
-                    content: "登陆异常！",
+                    content: "数据查询异常！",
                     okText:'确定',
                     cancelText: '取消'
                 })
@@ -111,7 +111,7 @@ angular.module('starter.services', [])
     //查询活动
     var loadActivityFun =function (opts){
       $http({
-          url:Variables.serverUrl+'/epmactive/list.action?page=1&userid=1',
+      	  url:opts.url, 
           method:'GET'
       }).success(function(data,header,config,status){
           if(data['RESULT_CODE'] == '0'){

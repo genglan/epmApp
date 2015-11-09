@@ -10,10 +10,23 @@
   </ion-header-bar>
   <ion-content>
     <div class="list">
+    	<label class="item item-input">
+          <span class="input-label">标题：</span>
+          <input type="text" id="title" />
+        </label>
         <label class="item item-input">
           <span class="input-label">内容：</span>
-          <textarea  rows="3" id="content"></textarea>
+          <textarea  rows="3" id="content_txt"></textarea>
         </label>
+        <label class="item item-input">
+          <span class="input-label">图片：</span>
+          <img id="test_img" ng-src="./img/nouser.jpg" style="width:70px;height:70px;"></img>
+        </label>
+        <label class="item item-input">
+           <input type="button" value="上传" ng-click="upload()" style="height:40px;width:100px;"/>
+        </label>
+        
+          
        
       </div>
   </ion-content>

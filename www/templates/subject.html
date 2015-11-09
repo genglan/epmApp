@@ -3,10 +3,17 @@
    <ul class="content-ul">
          <!--  <li class="content-title">今日话题：</li> -->
           <li class="comment-li">
-            <div class="list activity-hp" ng-repeat="sub in subJectList">
+            <!-- <div class="list activity-hp" ng-repeat="sub in subJectList">
               <a class="item item-thumbnail-left" href="#/subjectInfo/{{sub.id}}">
                   <img src='{{!sub.imgpath ?"./img/nothing.jpg":sub.imgpath}}'>
                   <p>{{sub.title}}</p>
+              </a>
+            </div> -->
+            <div class="list activity-hp" ng-repeat="sub in subJectList">
+              <a class="item item-avatar" href="#/subjectInfo/{{sub.id}}">
+                 <img src='{{!sub.imgpath ?"./img/nothing.jpg":sub.imgpath}}'>
+                <h2 class="content-title"><label>{{sub.createtime | dateFilter}}</label></h2>
+                <p style="font-weight:bold;padding-left: 38px;">{{sub.title}}</p>
               </a>
             </div>
           </li>

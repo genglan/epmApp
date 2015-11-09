@@ -4,13 +4,19 @@
   			
   		</ul>
       <ul class="content-ul">
-          <li class="content-title">相关评论：</li>
+          <li class="content-title">相关评论（{{headInfo.TOTALCOMMENT}}）条</li>
           <li class="publish-comment">
               <div class="list"><textarea id="content"  rows="3"></textarea></div>
               <input type="button" ng-click="subCommnet();" value="发表" >
           </li>
           <li class="comment-li" id="comment-li">
-            
+            	<div class="list" ng-repeat="news in newsCommentList">
+	              <a class="item item-avatar" href="#">
+	                  <img ng-src="{{!news.imgpath?'./img/nouser.jpg':news.imgpath}}">  
+	                  <h2 class="content-title">{{news.name}}<label>{{news.createtime | dateFilter}}</label></h2>
+	                  <p>{{news.content}}</p>
+	              </a>
+	            </div>
           </li>
           <div class="list" style="height:100px;">
           		 <div class="ui-loadmore ui-loading-wrap"  id="div_list">

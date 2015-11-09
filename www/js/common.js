@@ -4,6 +4,8 @@ var _USER_IMGPATH = '';
 var _USER_NAME ='';
 var _USER_ID = '';
 
+var VERSION = '1.0.1';
+
 /**
  * 今日头条评论列表
  */

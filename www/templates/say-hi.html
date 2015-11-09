@@ -5,28 +5,22 @@
     </div>
     <h1 class="title">Say Hi</h1>
     <div class="buttons">
-      <button class="button button-icon button-clear ion-navicon" ng-click="openPopover($event)"...</button>
+      <button class="button button-icon button-clear ion-navicon" ng-click="openPopover($event)"></button>
     </div>
   </ion-header-bar>
 	 <ion-content class="say-hi">
   		<ul class="content-ul">
-          <!-- <li class="content-title">今天Say Hi 的同学们：</li> {{say.createtime | dateFilter}}-->
-          <li class="comment-li" ng-repeat = "say in sayList">
-            <div class="list">
-              <a class="item item-thumbnail-left" href="#/info/1/{{say.id}}">
-                  <span>
-                      <img ng-src="{{!say.imgpath ?'./img/nouser.jpg':say.imgpath}}">
-                      <h2 class="content-title">{{say.realname}}</h2>
-                  </span>
-                  <span>
-                      <p>{{say.content}}</p>
-                  </span>
-              </a>
-            </div> 
-          </li>
-          <div class="list" style="height:100px;">
-          		 <div class="ui-loadmore ui-loading-wrap"  id="div_list">
-	 
+         <li class="comment-li" ng-repeat = "say in sayList">
+          <div class="list">
+            <a class="item item-avatar" href="#">
+               <img ng-src="{{!say.imgpath ?'./img/nouser.jpg':say.imgpath}}">
+              <h2 class="content-title">{{say.realname}}<label>{{say.createtime | dateFilter}}</label></h2>
+              <p>{{say.content}}</p>
+            </a>
+          </div>
+        </li>
+          <div class="list"  style="height:100px;">
+          		 <div class="ui-loadmore ui-loading-wrap" id="div_list"> 
 						<p id="loading_start" ng-click="loadMore()">加载更多</p>
 					
 					    <i class="ui-loading icon" id="loading_end1" style="display:none"></i>

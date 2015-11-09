@@ -9,29 +9,25 @@
   		<ul class="content-ul">
           <li class="comment-li">
             <div class="list">
-              <a class="item item-thumbnail-left" style="min-height:130px;" href="#">
-                  <span>
-                      <img ng-src="{{!info.imgpath ?'./img/nouser.jpg':info.imgpath}}">
-                      <h2 class="content-title">{{info.realname}}</h2>
-                  </span>
-                  <span>
-                      <p>{{info.content}}</p>
-                  </span>
+              <a class="item item-avatar" href="#">
+                  <img ng-src="{{!info.imgpath ?'./img/nouser.jpg':info.imgpath}}">
+                  <h2 class="content-title">{{info.realname}}<label>{{info.createtime | dateFilter}}</label></h2>
+                  <p>{{info.content}}</p> 
               </a>
             </div>   
           </li>
       </ul>
       <ul class="content-ul">
-          <li class="content-title">相关评论：</li>
+          <li class="content-title">相关评论（{{TOTALCOMMENT<1?0:TOTALCOMMENT}}）条：</li>
           <li class="publish-comment">
               <div class="list"><textarea id="content"  rows="3"></textarea></div>
               <input type="button" ng-click="commentFun();" value="发表">
           </li>
           <li class="comment-li">
             <div class="list" ng-repeat="c in commonList">
-              <a class="item item-thumbnail-left" href="#">
+              <a class="item item-avatar" href="#">
                   <img ng-src="{{!c.imgpath ?'./img/nouser.jpg':c.imgpath}}">
-                  <h2 class="content-title">{{c.realname}}</h2>
+                  <h2 class="content-title">{{c.realname}}<label>{{c.createtime | dateFilter}}</label></h2>
                   <p>{{c.content}}</p>
               </a>
             </div>

@@ -9,9 +9,10 @@
   		<ul class="content-ul">
           <li class="comment-li">
             <div class="list activity-hp">
-              <a class="item item-thumbnail-left" href="#">
+              <a class="item item-avatar" href="#">
                   <img src="{{imgPath}}">
-                  <p>{{info.title}}</p>
+                  <h2 class="content-title"><label>{{info.createtime | dateFilter}}</label></h2>
+                  <p style="font-weight:bold;padding-left: 38px;">{{info.title}}</p>
               </a>
             </div>
           </li>
@@ -24,16 +25,16 @@
           </li>
       </ul>
       <ul class="content-ul">
-          <li class="content-title">相关评论：</li>
+          <li class="content-title">相关评论（{{TOTALCOMMENT}}）条：</li>
           <li class="publish-comment">
               <div class="list"><textarea id="content" rows="3"></textarea></div>
               <input type="button" value="发表" ng-click="subCommont();">
           </li>
           <li class="comment-li">
             <div class="list" ng-repeat="c in commonList">
-              <a class="item item-thumbnail-left" href="#">
+              <a class="item item-avatar" href="#">
                   <img src="./img/person.jpg">
-                  <h2 class="content-title">{{c.realname}}</h2>
+                  <h2 class="content-title">{{c.realname}}<label>{{c.createtime | dateFilter}}</label></h2>
                   <p>{{c.content}}</p>
               </a>
             </div>

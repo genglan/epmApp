@@ -3608,7 +3608,7 @@ a.subdued {
     color: #444; }
 
 .tabs-striped .tabs {
-  background-color: white;
+  background-color: #0096d6;
   background-image: none;
   border: none;
   border-bottom: 1px solid #ddd;
@@ -4054,9 +4054,9 @@ ion-tabs.tabs-color-active-stable .tab-item {
   ion-tabs.tabs-color-active-stable .tab-item.tab-item-active, ion-tabs.tabs-color-active-stable .tab-item.active, ion-tabs.tabs-color-active-stable .tab-item.activated {
     color: #f8f8f8; }
 ion-tabs.tabs-color-active-positive .tab-item {
-  color: #444; }
+  color: #ccc; }
   ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-color-active-positive .tab-item.active, ion-tabs.tabs-color-active-positive .tab-item.activated {
-    color: #387ef5; }
+    color: #fff; }
 ion-tabs.tabs-color-active-calm .tab-item {
   color: #444; }
   ion-tabs.tabs-color-active-calm .tab-item.tab-item-active, ion-tabs.tabs-color-active-calm .tab-item.active, ion-tabs.tabs-color-active-calm .tab-item.activated {
@@ -4641,7 +4641,7 @@ ion-tabs.tabs-color-active-dark .tab-item {
   .loading-container .loading {
     padding: 20px;
     border-radius: 5px;
-    background-color: rgba(0, 0, 0, 0.7);
+    /*background-color: rgba(0, 0, 0, 0.7);*/
     color: #fff;
     text-align: center;
     text-overflow: ellipsis;
@@ -4661,7 +4661,7 @@ ion-tabs.tabs-color-active-dark .tab-item {
   z-index: 2;
   display: block;
   margin: -1px;
-  padding: 16px;
+  padding: 10px 16px;
   border-width: 1px;
   border-style: solid;
   font-size: 16px; }
@@ -5023,13 +5023,13 @@ a.item-content {
   min-height: 72px; }
   .item-avatar > img:first-child, .item-avatar .item-image, .item-avatar .item-content > img:first-child, .item-avatar .item-content .item-image, .item-avatar-left > img:first-child, .item-avatar-left .item-image, .item-avatar-left .item-content > img:first-child, .item-avatar-left .item-content .item-image {
     position: absolute;
-    top: 16px;
+    top: 10px;
     left: 16px;
-    max-width: 40px;
-    max-height: 40px;
+    max-width: 50px;
+    max-height: 50px;
     width: 100%;
     height: 100%;
-    border-radius: 50%; }
+    /*border-radius: 50%; */}
 
 .item-avatar-right, .item-avatar-right .item-content {
   padding-right: 72px;

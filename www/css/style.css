@@ -18,9 +18,8 @@
 .bar-stable .button.button-clear{
 	color:#fff;
 }
-.item-thumbnail-left > img:first-child{
-	max-width: 58px;
-    max-height: 78px;
+.tabs{
+	background:#0096d6;
 }
 .item p{
 	white-space:normal;	
@@ -116,17 +115,9 @@ h2.content-title {
 	font-size: 12px;
 }
 /*hp 活动*/
-.list.activity-hp .item-thumbnail-left{
-	min-height: 75px;
-}
-.list.activity-hp .item-thumbnail-left img{
+.list.activity-hp .item-avatar img{
 	max-width: 82px;
     max-height: 54px;
-}
-.list.activity-hp .item-thumbnail-left p{
-	padding-left: 10px;
-	font-weight: bold;
-	padding-top: 20px;
 }
 .content-ul li div textarea {
 	border: 1px solid #ccc;
@@ -147,28 +138,6 @@ h2.content-title {
 }
 .content-ul .publish-comment .list{
 	margin-bottom: 9px;
-}
-/*say hi*/
-.say-hi .item-thumbnail-left,.show .item-thumbnail-left{
-	min-height: 130px;
-}
-.say-hi .item-thumbnail-left span,.info .item-thumbnail-left span,.show .item-thumbnail-left span{
-	display: inline-block;
-}
-.say-hi .item-thumbnail-left span:nth-child(1),.info .item-thumbnail-left span:nth-child(1),.show .item-thumbnail-left span:nth-child(1){
-	position: absolute;
-	float: left;
-    left: 15px;
-    width:100px;
-}
-.say-hi .item-thumbnail-left span:nth-child(2),.info .item-thumbnail-left span:nth-child(2),.show .item-thumbnail-left span:nth-child(2){
-	padding-left: 25px;
-}
-.say-hi .item-thumbnail-left span img,.info .item-thumbnail-left span img,.show .item-thumbnail-left span img{  
-    max-width: 58px;
-    max-height: 78px;
-    width: 100%;
-    height: 100%;
 }
 /**我要报名**/
 .apply {
@@ -244,7 +213,7 @@ ion-modal-view .item-input input, ion-modal-view .item-input textarea{
 	border:1px solid #ccc;
 }
 .interaction ul{
-	margin: 20px auto;
+	margin: 40px auto;
 }
 .interaction ul li{
 	display: inline-block;
@@ -256,42 +225,22 @@ ion-modal-view .item-input input, ion-modal-view .item-input textarea{
     width: 150px;
     height: 100px;
     line-height: 100px;
-    border: 1px solid #ccc;
     text-align: center;
-    margin-right: 10px;
-    font-size: 20px;
-    background: url(../img/background.png) no-repeat center;
+    font-size: 20px; 
+    color:#fff; 	
 }
-/*.headlines-on{
-	background: url(../img/headed.png) no-repeat center;
+.interaction a:first-child{
+	background: #80aee6;
+	border: 1px solid #80aee6;
 }
-.headlines-off{
-	background: url(../img/head.png) no-repeat center;
+.interaction a:last-child{
+	background: #8b8acc;
+	border: 1px solid #8b8acc;
 }
-.interaction-on{
-	background: url(../img/interactioned.png) no-repeat center;
-}
-.interaction-off{
-	background: url(../img/interaction.png) no-repeat center;	
-}
-.subject-on{
-	background: url(../img/subjected.png) no-repeat center;
-}
-.subject-off{
-	background: url(../img/subject.png) no-repeat center;	
-}
-.activity-on{
-	background: url(../img/activityed.png) no-repeat center;
-}
-.activity-off{
-	background: url(../img/activity.png) no-repeat center;
-}
-.tab-item .icon{
-	height: 30px;
-}
-.tab-title{
+.comment-li h2 label{
+	float: right;
 	font-size: 12px;
-}*/
+}
 body {
   cursor: url('http://ionicframework.com/img/finger.png'), auto;
 }
@@ -388,5 +337,25 @@ background-color: #f8f9fa;
     display: block;
     background: url(loading_sprite.png) no-repeat;
     -webkit-background-size: auto 20px;
-
+}
+.pop_up_box span {
+  display: block;
+  width: 47px;
+  height: 47px;
+  margin: 0 auto;
+  margin-top: 42px;
+}
+span.loading {
+  width: 60px;
+  height: 60px;
+  background: url(../img/loading.png) no-repeat;
+  background-size: 100% 100%;
+  -webkit-animation-name: loading;
+  -webkit-animation-duration: 1.4s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}
+@-webkit-keyframes loading {
+  from { -webkit-transform: rotate(0deg) translateZ(0); }
+  to { -webkit-transform: rotate(360deg) translateZ(0); }
 }

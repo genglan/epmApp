@@ -17,8 +17,9 @@ angular.module('starter.filters', [])
 		var month = date.getMonth()+1 ;
 		var day =  date.getDate();
 		month = month<9?'0'+month:month;
-		day = day<9?'0'+day:day;
+		day = day<=9?'0'+day:day;
 		var today = year+"-"+month+"-"+day ;
+		//alert(today +"------"+data)
 		if(data.substring(0,10) == today){
 			return '今天 '+data.substring(10)
 		}else{
