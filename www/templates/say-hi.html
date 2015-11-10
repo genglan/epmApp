@@ -10,9 +10,9 @@
   </ion-header-bar>
 	 <ion-content class="say-hi">
   		<ul class="content-ul">
-         <li class="comment-li" ng-repeat = "say in sayList">
+         <li class="comment-li" ng-repeat="say in sayList">
           <div class="list">
-            <a class="item item-avatar" href="#">
+            <a class="item item-avatar" href="#/info/1/{{say.id}}">
                <img ng-src="{{!say.imgpath ?'./img/nouser.jpg':say.imgpath}}">
               <h2 class="content-title">{{say.realname}}<label>{{say.createtime | dateFilter}}</label></h2>
               <p>{{say.content}}</p>

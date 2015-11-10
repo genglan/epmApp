@@ -21,19 +21,19 @@ angular.module('starter.controllers', [])
 //        url:Variables.serverUrl+'/epm/version.action',
 //        callBackFun:function (data){ 
 //            setTimeout(function() {  
-//            	    var url = data[0].PROPERTYS;
-//                 	if(data[0].PROPERTYF != VERSION){
-//                 		$ionicPopup.confirm({
-//				            title: "系统提示",
-//				            content: "检测有最新版本，是否更新？",
-//				            okText:'确定',
-//				            cancelText: '取消'
-//				        }).then(function (res) {
-//				            if (res) {
-//				                window.location.href = url;
-//				            }
-//				        });  
-//                 	}
+//                  var url = data[0].PROPERTYS;
+//                  if(data[0].PROPERTYF != VERSION){
+//                      $ionicPopup.confirm({
+//                          title: "系统提示",
+//                          content: "检测有最新版本，是否更新？",
+//                          okText:'确定',
+//                          cancelText: '取消'
+//                      }).then(function (res) {
+//                          if (res) {
+//                              window.location.href = url;
+//                          }
+//                      });  
+//                  }
 //             }, 1000);
 //        }
 //    });
@@ -55,8 +55,8 @@ angular.module('starter.controllers', [])
             callBackFun:function (data){
                 _USER_IMGPATH = data['IMGPATH'];
                   if(!_USER_IMGPATH){ 
-			    	 _USER_IMGPATH =  "img/nouser.jpg";
-			   	   } 
+                     _USER_IMGPATH =  "img/nouser.jpg";
+                   } 
                 _USER_NAME = data['NAME'];
                 $rootScope.name = data['NAME'];//侧滑菜单顶部有使用，别再删了
                 _USER_ID = data['USERID'];
@@ -196,27 +196,24 @@ angular.module('starter.controllers', [])
             },
             buttonClicked: function (index) { 
                 getPhotoFromAlbum(1, function (imageURL) { 
-                	 
+                     
                        var IMG_UPLOAD_URL = Variables.serverUrl+"/epmupload/upload.action"; 
                        uploadImage(IMG_UPLOAD_URL, imageURL, _USER_ID,'','',function (data) {  
-                       	if(data){
-                       		document.getElementById("test_img").src = data['IMG_URL']+"?"+Math.random(); 
-                       		 	_USER_IMGPATH = data['IMG_URL'];  
-                       	     	   $ionicLoading.show({
-								        template: '头像上传成功'
-										   }); 
-										   $timeout(function () {
-												$ionicLoading.hide();
-											}, 1000);
-		                       	}else{ 
-		                       		$ionicLoading.show({
-										        template: '头像上传失败'
-										   }); 
-										   $timeout(function () {
-												$ionicLoading.hide();
-											}, 1000);
-		                       	} 
-                       	}); 
+                        if(data){
+                            document.getElementById("test_img").src = data['IMG_URL']+"?"+Math.random(); 
+                                _USER_IMGPATH = data['IMG_URL'];  
+                                $ionicPopup.alert({
+                                    title: '提示信息',
+                                    content: "用户头像上传成功！"
+                                }) 
+                        }else{ 
+                            $ionicPopup.alert({
+                                title: '提示信息',
+                                content: "用户头像上传失败！"
+                            }) 
+                                          
+                        } 
+                    }); 
                        
                 }); 
                 return true;
@@ -246,13 +243,12 @@ angular.module('starter.controllers', [])
             $scope.newsid = data.NEWSID;
             var str1 = ''; 
             var imgList = data.IMGLIST; 
-            /**********Li jIE by 2015-11-04*****************/
-            $scope.newsCommentList = data.COMMENT; 
+            $scope.newsCommentList = data.COMMENT;           
              
 //            _newAppend('comment-li',data.COMMENT); //新闻评论 
             totalPage = data.TOTALPAGE ;//总页数
             if(totalPage <= 1){ 
-		    	$('#div_list').hide(); 
+                $('#div_list').hide(); 
             }
             if(imgList.length>0){
                 for(var i =0 ;i <imgList.length ;i++ ){
@@ -280,7 +276,7 @@ angular.module('starter.controllers', [])
     $scope.subCommnet = function(){
         var content = document.getElementById("content").value;
         if(!content){
-         	$ionicPopup.alert({
+            $ionicPopup.alert({
                 title: '提示信息',
                 content: "请填写评论信息！"
             });
@@ -300,22 +296,22 @@ angular.module('starter.controllers', [])
                 newsid:$scope.newsid   
             },callBackFun:function (data){
                 if(data['RESULT_CODE'] == '0'){
-                	var map ={};
-					map['imgpath'] = _USER_IMGPATH;
-					map['name'] = _USER_NAME;
-					map['content'] = content;
-					
-					var list = [];
-					list.push(map);
-					$scope.newsCommentList = list.concat($scope.newsCommentList);  
-                	document.getElementById("content").value = "";//清空下拉选择框 
+                    var map ={};
+                    map['imgpath'] = _USER_IMGPATH;
+                    map['name'] = _USER_NAME;
+                    map['content'] = content;
+                    
+                    var list = [];
+                    list.push(map);
+                    $scope.newsCommentList = list.concat($scope.newsCommentList);  
+                    document.getElementById("content").value = "";//清空下拉选择框 
                     $scope.loadMore();
                     if(totalPage > 1){
-                    	$('#loading_start').show();
-				    	$('#loading_end1').hide();
-				    	$('#loading_end2').hide(); 
+                        $('#loading_start').show();
+                        $('#loading_end1').hide();
+                        $('#loading_end2').hide(); 
                     }else{
-                    	$('#div_list').hide();  
+                        $('#div_list').hide();  
                     }
                     $ionicPopup.alert({
                         title: '提示信息',
@@ -336,33 +332,33 @@ angular.module('starter.controllers', [])
     //加载更多
     var page = 1;
     $scope.loadMore = function (){
-    	//点击切换状态 
-    	$('#loading_start').hide();
-    	$('#loading_end1').show();
-    	$('#loading_end2').show();
+        //点击切换状态 
+        $('#loading_start').hide();
+        $('#loading_end1').show();
+        $('#loading_end2').show();
         var item = [];
         page++;
         if(page <= totalPage){
-        	 initData.loadInfoFun({
-	            url:Variables.serverUrl+"/epmnew/listcomment.action?page="+page+"&newsid="+$scope.newsid,
-	            callBackFun:function (data){
-	                item = data.LIST;  
-	                totalPage = data.TOTALPAGE;
-//	                $scope.$apply(function() {  
-//	                     	  $scope.newsCommentList = $scope.newsCommentList.concat(item); 
-//	                }); 
-	                  $scope.newsCommentList = $scope.newsCommentList.concat(item); 
-//	                _newAppend('comment-li',item); 
-	                if(page == totalPage){
-	                	$('#div_list').hide(); 
-	                }else{
-	                	$('#loading_start').show();
-				    	$('#loading_end1').hide();
-				    	$('#loading_end2').hide();
-	                } 
-	//                $scope.$broadcast('scroll.infiniteScrollComplete'); 
-	            }
-	        });  
+             initData.loadInfoFun({
+                url:Variables.serverUrl+"/epmnew/listcomment.action?page="+page+"&newsid="+$scope.newsid,
+                callBackFun:function (data){
+                    item = data.LIST;  
+                    totalPage = data.TOTALPAGE;
+//                  $scope.$apply(function() {  
+//                            $scope.newsCommentList = $scope.newsCommentList.concat(item); 
+//                  }); 
+                      $scope.newsCommentList = $scope.newsCommentList.concat(item); 
+//                  _newAppend('comment-li',item); 
+                    if(page == totalPage){
+                       $("#div_list").css('display','none');
+                    }else{
+                        $('#loading_start').show();
+                        $('#loading_end1').hide();
+                        $('#loading_end2').hide();
+                    } 
+    //                $scope.$broadcast('scroll.infiniteScrollComplete'); 
+                }
+            });  
         } 
     }
     
@@ -377,7 +373,7 @@ angular.module('starter.controllers', [])
 })
 //应用首页 tab Say Hi ~
 .controller('SayCtrl', function($scope,initData,Variables,$ionicPopup,$state,$ionicLoading,$ionicPopover,$http) {
-	 $ionicLoading.show({
+     $ionicLoading.show({
         template: '<div class="pop_up_box"><span class="loading"></span></div>'
     }); 
     
@@ -391,7 +387,7 @@ angular.module('starter.controllers', [])
             $scope.sayList = data; 
             totalPage = totalpage;//总页数 
             if(totalPage <= 1){ 
-		    	$('#div_list').hide(); 
+                $('#div_list').hide(); 
             }  
             $ionicLoading.hide();
         }
@@ -400,26 +396,28 @@ angular.module('starter.controllers', [])
     //加载更多
     var page = 1;
     $scope.loadMore = function (){ 
-    	//点击切换状态 
-    	$('#loading_start').hide();
-    	$('#loading_end1').show();
-    	$('#loading_end2').show();
+        //点击切换状态 
+        $('#loading_start').hide();
+        $('#loading_end1').show();
+        $('#loading_end2').show();
         var item = [];
         page++; 
         if(page <= totalPage){
-        	 initData.loadListFun({
-	            url:Variables.serverUrl+'/sayhi/list.action?page='+page,
-	            callBackFun:function (data){  
-	                $scope.sayList = $scope.sayList.concat(data);   
-	                if(page == totalPage){ 
-	                	$('#div_list').hide();   
-	                }else{
-	                	$('#loading_start').show();
-				    	$('#loading_end1').hide();
-				    	$('#loading_end2').hide();
-	                }  
-	            }
-	        });  
+             initData.loadListFun({
+                url:Variables.serverUrl+'/sayhi/list.action?page='+page,
+                callBackFun:function (data){  
+                    $scope.$apply(function() {  
+                       $scope.sayList = $scope.sayList.concat(data);  
+                    });        
+                    if(page == totalPage){ 
+                        $('#div_list').hide();   
+                    }else{
+                        $('#loading_start').show();
+                        $('#loading_end1').hide();
+                        $('#loading_end2').hide();
+                    }  
+                }
+            });  
         } 
     }
     
@@ -456,49 +454,49 @@ angular.module('starter.controllers', [])
       
       //编辑sayhI
       $scope.sayHi = function(){ 
-      		$scope.popover.hide();
-       		$state.go("publishSay",{reload: true});
+            $scope.popover.hide();
+            $state.go("publishSay",{reload: true});
       }
       
       //刷新sayhI
       $scope.refreshMySayHi = function(){
-       		 $scope.popover.hide();
-       		 //调用刷新接口
-       		 $http({
-		          url:Variables.serverUrl+"/sayhi/sayhirefresh.action?userid="+_USER_ID+"",
-		          method:'GET'
-		      }).success(function(data,header,config,status){
-		          if(data['RESULT_CODE'] == '0'){
-		          		initData.loadListFun({
-					        url:Variables.serverUrl+'/sayhi/list.action?page=1',
-					        callBackFun:function (data){ 
-					           $scope.sayList = data;
-					           $ionicLoading.hide();
-					        }
-					    });
-		          		$ionicPopup.confirm({
-		                  title: "提示信息",
-		                  content: "我的Say Hi刷新成功！",
-		                  okText:'确定',
-		                  cancelText: '取消'
-		              }) 
-		          }else{
-		              $ionicPopup.confirm({
-		                  title: "提示信息",
-		                  content: "个人信息查询异常！",
-		                  okText:'确定',
-		                  cancelText: '取消'
-		              })
-		          }
-		      }).error(function(data,header,config,status){
-		          //处理响应失败
-		          $ionicPopup.confirm({
-		              title: "提示信息",
-		              content: "服务器响应失败",
-		              okText:'确定',
-		              cancelText: '取消'
-		          })
-		      });
+             $scope.popover.hide();
+             //调用刷新接口
+             $http({
+                  url:Variables.serverUrl+"/sayhi/sayhirefresh.action?userid="+_USER_ID+"",
+                  method:'GET'
+              }).success(function(data,header,config,status){
+                  if(data['RESULT_CODE'] == '0'){
+                        initData.loadListFun({
+                            url:Variables.serverUrl+'/sayhi/list.action?page=1',
+                            callBackFun:function (data){ 
+                               $scope.sayList = data;
+                               $ionicLoading.hide();
+                            }
+                        });
+                        $ionicPopup.confirm({
+                          title: "提示信息",
+                          content: "我的Say Hi刷新成功！",
+                          okText:'确定',
+                          cancelText: '取消'
+                      }) 
+                  }else{
+                      $ionicPopup.confirm({
+                          title: "提示信息",
+                          content: "个人信息查询异常！",
+                          okText:'确定',
+                          cancelText: '取消'
+                      })
+                  }
+              }).error(function(data,header,config,status){
+                  //处理响应失败
+                  $ionicPopup.confirm({
+                      title: "提示信息",
+                      content: "服务器响应失败",
+                      okText:'确定',
+                      cancelText: '取消'
+                  })
+              });
       }
       
     //点击确定后
@@ -516,7 +514,7 @@ angular.module('starter.controllers', [])
                       title: '提示信息',
                       content: "say hi 成功！"
                   }).then(function (res) {
-                  	  document.getElementById("content_txt").value = "";
+                      document.getElementById("content_txt").value = "";
                       $state.go("app.tab.say",{reload: true}); 
                   });  
               }else{
@@ -533,7 +531,7 @@ angular.module('starter.controllers', [])
 })
 //应用首页 tab Show me ~
 .controller('ShowCtrl', function($scope,$state,$ionicModal,initData,Variables,$ionicPopup,$ionicLoading,$ionicActionSheet,$timeout) {
-	 $ionicLoading.show({
+     $ionicLoading.show({
         template: '<div class="pop_up_box"><span class="loading"></span></div>'
     });
     
@@ -548,7 +546,7 @@ angular.module('starter.controllers', [])
            $scope.showList = data;
            totalPage = totalpage;//总页数
            if(totalPage <= 1){ 
-		    	$('#div_list').hide(); 
+                $('#div_list').hide(); 
            }
            $ionicLoading.hide();
         }
@@ -558,30 +556,30 @@ angular.module('starter.controllers', [])
     //加载更多
     var page = 1;
     $scope.loadMore = function (){ 
-    	//点击切换状态 
-    	$('#loading_start').hide();
-    	$('#loading_end1').show();
-    	$('#loading_end2').show();
+        //点击切换状态 
+        $('#loading_start').hide();
+        $('#loading_end1').show();
+        $('#loading_end2').show();
         var item = [];
         page++; 
         if(page <= totalPage){
-        	 initData.loadListFun({
-	            url:Variables.serverUrl+'/showme/list.action?page='+page,
-	            callBackFun:function (data){  
-	                $scope.showList = $scope.showList.concat(data);   
-	                if(page == totalPage){ 
-	                	document.getElementById("div_list").style.display ="none"; 
-	                }else{
-	                	$('#loading_start').show();
-				    	$('#loading_end1').hide();
-				    	$('#loading_end2').hide();
-	                }  
-	            }
-	        });  
+             initData.loadListFun({
+                url:Variables.serverUrl+'/showme/list.action?page='+page,
+                callBackFun:function (data){  
+                    $scope.$apply(function() {  
+                       $scope.showList = $scope.showList.concat(data);
+                    });    
+                    if(page == totalPage){ 
+                        document.getElementById("div_list").style.display ="none"; 
+                    }else{
+                        $('#loading_start').show();
+                        $('#loading_end1').hide();
+                        $('#loading_end2').hide();
+                    }  
+                }
+            });  
         } 
     }
-    
-    
     //返回
     $scope.callBack = function (url){
         $state.go(url)
@@ -617,54 +615,48 @@ angular.module('starter.controllers', [])
             },
             buttonClicked: function (index) { 
                 getPhotoFromAlbum(1, function (imageURL) { 
-                	 
+                     
                        var IMG_UPLOAD_URL = Variables.serverUrl+"/epmupload/uploadshow.action"; 
                        uploadImage(IMG_UPLOAD_URL, imageURL, _USER_ID,'','',function (data) { 
-                       	if(data){
-                       		document.getElementById("test_img").src = data['IMG_URL']+"?"+Math.random(); 
-                       		 	_USER_IMGPATH = data['IMG_URL'];  
-                       		 	showupid = data['SHOWUPID'];  
-                       	     	   $ionicLoading.show({
-								        template: 'Show Me图片上传成功'
-										   }); 
-										   $timeout(function () {
-												$ionicLoading.hide();
-											}, 1000);
-		                       	}else{ 
-		                       		$ionicLoading.show({
-										        template: 'Show Me图片上传失败'
-										   }); 
-										   $timeout(function () {
-												$ionicLoading.hide();
-											}, 1000);
-		                       	} 
-                       	}); 
+                        if(data){
+                            document.getElementById("test_img").src = data['IMG_URL']+"?"+Math.random(); 
+                            _USER_IMGPATH = data['IMG_URL'];  
+                            showupid = data['SHOWUPID'];  
+                            $ionicPopup.show({
+                                title: '提示信息',
+                                content: 'Show Me图片上传成功'
+                            });           
+                        }else{ 
+                            $ionicPopup.show({
+                                title: '提示信息',
+                                content: 'Show Me图片上传失败'
+                            });            
+                        } 
+                    }); 
                        
                 }); 
                 return true;
             }
         });
-    }
-    
-    
+    } 
     //发布show 
     $scope.publishShow = function (){
         var title = document.getElementById("title").value;
         if(!title){
-        			$ionicPopup.alert({
-                        title: '提示信息',
-                        content: "请输入标题！"
-                    });
-                    return;
+            $ionicPopup.alert({
+                title: '提示信息',
+                content: "请输入标题！"
+            });
+            return;
         }
         
         var content = document.getElementById("content_txt").value;
         if(!content){
-        			$ionicPopup.alert({
-                        title: '提示信息',
-                        content: "请输入内容！"
-                    });
-                    return;
+            $ionicPopup.alert({
+                title: '提示信息',
+                content: "请输入内容！"
+            });
+            return;
         }
         
         var test_img = document.getElementById("test_img").src;
@@ -682,7 +674,7 @@ angular.module('starter.controllers', [])
                       title: '提示信息',
                       content: "show me发布 成功！"
                   }).then(function (res) {
-                   	  document.getElementById("title").value = "";
+                      document.getElementById("title").value = "";
                       document.getElementById("content").value = "";
                       document.getElementById("test_img").src ="";
                       
@@ -704,11 +696,9 @@ angular.module('starter.controllers', [])
 })
 //应用首页 tab 每日话题
 .controller('SubjectCtrl', function($scope,initData,Variables,$stateParams,$ionicPopup,$compile,$ionicLoading) {
-	 $ionicLoading.show({
+     $ionicLoading.show({
         template: '<div class="pop_up_box"><span class="loading"></span></div>'
     });
-    
-    
     $scope.subJectList = [];
     var totalPage = 0;
     
@@ -717,9 +707,9 @@ angular.module('starter.controllers', [])
         url:Variables.serverUrl+'/epmday/list.action',
         callBackFun:function (data,totalpage){ 
            $scope.subJectList = data;
-             totalPage = totalpage;//总页数
+            totalPage = totalpage;//总页数
            if(totalPage <= 1){ 
-		    	$('#div_list').hide(); 
+                $('#div_list').hide(); 
            }
             $ionicLoading.hide();
         }
@@ -728,26 +718,26 @@ angular.module('starter.controllers', [])
     //加载更多
     var page = 1;
     $scope.loadMore = function (){ 
-    	//点击切换状态 
-    	$('#loading_start').hide();
-    	$('#loading_end1').show();
-    	$('#loading_end2').show();
+        //点击切换状态 
+        $('#loading_start').hide();
+        $('#loading_end1').show();
+        $('#loading_end2').show();
         var item = [];
         page++; 
         if(page <= totalPage){
-        	 initData.loadListFun({
-	            url:Variables.serverUrl+'/epmday/list.action?page='+page,
-	            callBackFun:function (data){  
-	                $scope.subJectList = $scope.subJectList.concat(data);   
-	                if(page == totalPage){ 
-	                	document.getElementById("div_list").style.display ="none"; 
-	                }else{
-	                	$('#loading_start').show();
-				    	$('#loading_end1').hide();
-				    	$('#loading_end2').hide();
-	                }  
-	            }
-	        });  
+             initData.loadListFun({
+                url:Variables.serverUrl+'/epmday/list.action?page='+page,
+                callBackFun:function (data){  
+                    $scope.subJectList = $scope.subJectList.concat(data);   
+                    if(page == totalPage){ 
+                        document.getElementById("div_list").style.display ="none"; 
+                    }else{
+                        $('#loading_start').show();
+                        $('#loading_end1').hide();
+                        $('#loading_end2').hide();
+                    }  
+                }
+            });  
         } 
     }
     
@@ -820,7 +810,7 @@ angular.module('starter.controllers', [])
 })
 //say hi type：1 ，show me type：2 
 .controller('InfoCtrl', function($scope,$stateParams,initData,Variables,$ionicPopup,$ionicLoading) {
-	 $ionicLoading.show({
+     $ionicLoading.show({
         template: '<div class="pop_up_box"><span class="loading"></span></div>'
     });
     var type = $stateParams.type;
@@ -900,7 +890,7 @@ angular.module('starter.controllers', [])
 })
 //应用首页 tab Hp活动
 .controller('ActivityCtrl', function($scope,initData,Variables,$stateParams,$ionicPopup,$compile,$ionicLoading) {
-	 $ionicLoading.show({
+     $ionicLoading.show({
         template: '<div class="pop_up_box"><span class="loading"></span></div>'
     });
     
@@ -909,13 +899,13 @@ angular.module('starter.controllers', [])
     
    //查询活动列表
    initData.loadActivityFun({
-   	    url:Variables.serverUrl+'/epmactive/list.action?page=1&userid='+_USER_ID,
+        url:Variables.serverUrl+'/epmactive/list.action?page=1&userid='+_USER_ID,
         callBackFun:function (data){ 
            $scope.activityList = data['ACTIVING'];
            $scope.activedList =data['ACTIVED'];
            totalPage = data['TOTALPAGE'];
            if(totalPage <= 1){ 
-		    	$('#div_list').hide(); 
+                $('#div_list').hide(); 
            }
            $ionicLoading.hide();
         }
@@ -923,26 +913,26 @@ angular.module('starter.controllers', [])
    //加载更多
     var page = 1;
     $scope.loadMore = function (){ 
-    	//点击切换状态 
-    	$('#loading_start').hide();
-    	$('#loading_end1').show();
-    	$('#loading_end2').show();
+        //点击切换状态 
+        $('#loading_start').hide();
+        $('#loading_end1').show();
+        $('#loading_end2').show();
         var item = [];
         page++; 
         if(page <= totalPage){
-        	 initData.loadActivityFun({
-	            url:Variables.serverUrl+'/epmactive/list.action?page='+page+'&userid='+_USER_ID,
-	            callBackFun:function (data){   
-	                $scope.activedList = $scope.activedList.concat(data['ACTIVED']);   
-	                if(page == totalPage){ 
-	                	document.getElementById("div_list").style.display ="none"; 
-	                }else{
-	                	$('#loading_start').show();
-				    	$('#loading_end1').hide();
-				    	$('#loading_end2').hide();
-	                }  
-	            }
-	        });  
+             initData.loadActivityFun({
+                url:Variables.serverUrl+'/epmactive/list.action?page='+page+'&userid='+_USER_ID,
+                callBackFun:function (data){   
+                    $scope.activedList = $scope.activedList.concat(data['ACTIVED']);   
+                    if(page == totalPage){ 
+                        document.getElementById("div_list").style.display ="none"; 
+                    }else{
+                        $('#loading_start').show();
+                        $('#loading_end1').hide();
+                        $('#loading_end2').hide();
+                    }  
+                }
+            });  
         } 
     }
     

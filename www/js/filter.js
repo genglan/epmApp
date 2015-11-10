@@ -20,10 +20,14 @@ angular.module('starter.filters', [])
 		day = day<=9?'0'+day:day;
 		var today = year+"-"+month+"-"+day ;
 		//alert(today +"------"+data)
-		if(data.substring(0,10) == today){
-			return '今天 '+data.substring(10)
+		if(!!data){
+			if(data.substring(0,10) == today){
+				return '今天 '+data.substring(10)
+			}else{
+				return data
+			}
 		}else{
-			return data
+			return "";
 		}
 	}
 	return dateStr;

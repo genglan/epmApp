@@ -213,29 +213,26 @@ ion-modal-view .item-input input, ion-modal-view .item-input textarea{
 	border:1px solid #ccc;
 }
 .interaction ul{
-	margin: 40px auto;
-}
-.interaction ul li{
-	display: inline-block;
+	color: #fff;
+	text-align:center;
 	width:100%;
-	text-align: center;
+	height:100%;
+	padding-top:15px;
 }
-.interaction a{
-    display: inline-block;
-    width: 150px;
-    height: 100px;
-    line-height: 100px;
-    text-align: center;
-    font-size: 20px; 
-    color:#fff; 	
+.interaction  ul li{
+	width:48%;
+	height:88px;
+	display: inline-block;
+	cursor: pointer;
 }
-.interaction a:first-child{
-	background: #80aee6;
-	border: 1px solid #80aee6;
+.interaction  ul li dl dd span {
+	font-size:17px;
 }
-.interaction a:last-child{
-	background: #8b8acc;
-	border: 1px solid #8b8acc;
+.interaction ul li.say-li{
+	background-color:#9999cc;	
+}
+.interaction ul li.show-li{
+	background-color:#ff6666;	
 }
 .comment-li h2 label{
 	float: right;
@@ -309,12 +306,6 @@ body {
     -webkit-box-align: center;
     text-align: center;
     height: 40px;
-}
-.icon{
-  -webkit-animation-name: fadeIn; /*动画名称*/
-  -webkit-animation-duration: 0.5s; /*动画持续时间*/
-  -webkit-animation-iteration-count: 1; /*动画次数*/
-  -webkit-animation-delay: 0s; /*延迟时间*/
 }
 .ui-loading-wrap {
   display: -webkit-box;

@@ -1,10 +1,26 @@
 <ion-view view-title="互动">
   <ion-content class="interaction">
   	<ul>
-        <li>
-          <a href="#" ng-click="clickFun('say')">Say Hi</a>
-          <a href="#" ng-click="clickFun('show-me')">Show me</a>
-        </li>
+  		<li class="say-li" ng-click="clickFun('say')">
+		   <dl>
+			 <dt>
+				<img ng-src="img/say.png"/>
+			 </dt>
+			 <dd>
+				<span>Say Hi</span>
+			 </dd>
+			</dl>
+		</li>
+		<li class="show-li" ng-click="clickFun('show-me')">
+		   <dl>
+			 <dt>
+				<img ng-src="img/show.png"/>
+			 </dt>
+			 <dd>
+				<span>Show me</span>
+			 </dd>
+			</dl>
+		</li>
     </ul>
   </ion-content>
 </ion-view>
