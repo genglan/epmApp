@@ -1,5 +1,11 @@
 <ion-view view-title="活动">
   <ion-content>
+  		<ion-refresher on-refresh="doRefresh()"
+			               pulling-text="松开可以刷新..." 
+			               refreshing-text="正在努力获取新内容..."
+			               refreshing-icon="ion-loading-b">
+				
+			</ion-refresher>
   		<ul class="content-ul">
           <li class="content-title">Hp活动：</li>
           <li class="comment-li">
@@ -22,16 +28,9 @@
                 <p style="font-weight:bold;padding-left: 38px;">{{actived.title}}</p>
               </a>
             </div>
-          </li>
-          <div class="list" style="height:100px;" id="div_list">
-          		 <div class="ui-loadmore ui-loading-wrap">
-	 
-						<p id="loading_start" ng-click="loadMore()">加载更多</p>
-					
-					    <i class="ui-loading icon" id="loading_end1" style="display:none"></i>
-				    	<p id="loading_end2" style="display:none">加载中</p> 
-				  </div>  
-          </div>
+          </li> 
+           <li style="height:30px;"></li> 
       </ul>
+        <ion-infinite-scroll ng-if="moreDataCanBeLoaded()"  on-infinite="loadMore()" distance=""> </ion-infinite-scroll>
     </ion-content>
 </ion-view>

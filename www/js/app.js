@@ -80,6 +80,12 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers','s
         }
       }
   })
+  //头条详情
+  .state('newinfo', {
+    url: "/newinfo/:id",
+    templateUrl: "templates/newinfo.html",
+    controller:'NewInfoCtrl'
+  })
   //互动
   .state('app.tab.interaction', {
       url: '/interaction',

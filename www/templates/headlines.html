@@ -1,34 +1,36 @@
 <ion-view view-title="今日头条">
-  <ion-content >
-  	<ul class="content-ul" id="headInfo">
-  			
-  		</ul>
+  <ion-content >  
+  		<ion-refresher 	on-refresh="doRefresh()"
+			            pulling-text="松开可以刷新..." 
+			            refreshing-text="正在努力获取新内容..."
+			            refreshing-icon="ion-loading-b">
+				
+		</ion-refresher>
+	  	<ul class="content-ul">
+          <li class="content-title">今日头条：</li>
+          <li class="comment-li">
+            <div class="list activity-hp">
+              <a class="item item-avatar" href="#/newinfo/{{headInfo.NEWSID}}">
+                <img src='{{headimgpath}}'>
+                <h2 class="content-title"><label>{{headInfo.CREATETIME | dateFilter}}</label></h2>
+                <p style="font-weight:bold;padding-left: 38px;">{{headInfo.TITLE}}</p>
+              </a>
+            </div>
+          </li>
+      </ul>
       <ul class="content-ul">
-          <li class="content-title">相关评论（{{headInfo.TOTALCOMMENT}}）条</li>
-          <li class="publish-comment">
-              <div class="list"><textarea id="content"  rows="3"></textarea></div>
-              <input type="button" ng-click="subCommnet();" value="发表" >
-          </li>
-          <li class="comment-li" id="comment-li">
-            	<div class="list" ng-repeat="news in newsCommentList">
-	              <a class="item item-avatar" href="#">
-	                  <img ng-src="{{!news.imgpath?'./img/nouser.jpg':news.imgpath}}">  
-	                  <h2 class="content-title">{{news.name}}<label>{{news.createtime | dateFilter}}</label></h2>
-	                  <p>{{news.content}}</p>
-	              </a>
-	            </div>
-          </li>
-          <div class="list" style="height:100px;">
-          		 <div class="ui-loadmore ui-loading-wrap"  id="div_list">
-	 
-						<p id="loading_start" ng-click="loadMore()">加载更多</p>
-					
-					    <i class="ui-loading icon" id="loading_end1" style="display:none"></i>
-				    	<p id="loading_end2" style="display:none">加载中</p> 
-				  </div>  
-          </div>  
-           
-      </ul> 
- 	 <!--<ion-infinite-scroll ng-if="moreDataCanBeLoaded()"  on-infinite="loadMore()"> </ion-infinite-scroll>-->
+          <li class="content-title">往日头条：</li>
+          <li class="comment-li">
+            <div class="list activity-hp" ng-repeat="o in oldHeadList">
+              <a class="item item-avatar" href="#/newinfo/{{o.id}}">
+                <img src='{{!o.imgpath ?"./img/nothing.jpg":o.imgpath}}'>
+                <h2 class="content-title"><label>{{o.createtime | dateFilter}}</label></h2>
+                <p style="font-weight:bold;padding-left: 38px;">{{o.title}}</p>
+              </a>
+            </div>
+          </li> 
+           <li style="height:30px;"></li> 
+      </ul>
+ 	 	 <ion-infinite-scroll ng-if="moreDataCanBeLoaded()"  on-infinite="loadMore()" distance="5%"> </ion-infinite-scroll>
 </ion-content>
 </ion-view>
